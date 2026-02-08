@@ -31,10 +31,12 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/special_reviews");
+        if (!res.ok) throw new Error("Failed to load reviews");
         const data = await res.json();
-        setdata(data)
+        setdata(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error(err);
+        setdata([]);
       }
     };
     fetchData();

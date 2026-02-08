@@ -14,10 +14,12 @@ export default function Navbar() {
     async function getCartCount() {
       try {
         const response = await fetch("/api/check_cart");
+        if (!response.ok) throw new Error("Failed to fetch cart");
         const data = await response.json();
         setCartCount(data.count || 0);
       } catch (error) {
         console.error("Error fetching cart:", error);
+        setCartCount(0);
       }
     }
 
