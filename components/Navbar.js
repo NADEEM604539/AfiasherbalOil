@@ -37,7 +37,7 @@ export default function Navbar() {
             />
           </div>
           <h1 className="text-2xl font-extrabold text-green-700 tracking-wide group-hover:tracking-wider transition-all duration-300">
-            Afia<span className="text-emerald-400">'s</span>
+            Afia<span className="text-emerald-400">&apos;s</span>
           </h1>
         </Link>
 
