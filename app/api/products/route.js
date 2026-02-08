@@ -7,7 +7,8 @@ export async function GET() {
     );
     return Response.json(rows);
   } catch (e) {
-    return new Response(JSON.stringify({ error: "Failed to fetch products" }), { status: 500 });
+    console.error("GET products error:", e.message, e.code);
+    return new Response(JSON.stringify({ error: "Failed to fetch products", details: e.message }), { status: 500 });
   }
 }
 

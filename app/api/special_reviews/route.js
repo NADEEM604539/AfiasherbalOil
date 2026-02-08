@@ -45,7 +45,7 @@ export async function GET() {
     `);
     return Response.json(reviews);
   } catch (err) {
-    console.error("Error fetching reviews:", err);
-    return new Response(JSON.stringify({ error: "Failed to fetch reviews" }), { status: 500 });
+    console.error("Error fetching reviews:", err.message, err.code);
+    return new Response(JSON.stringify({ error: "Failed to fetch reviews", details: err.message }), { status: 500 });
   }
 }
