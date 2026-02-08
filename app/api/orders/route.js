@@ -1,8 +1,5 @@
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET() {
   try {
@@ -120,35 +117,6 @@ export async function POST(request) {
     await conn.commit();
     await conn.release();
 
-    // ======================================
-    // 📧 SEND SIMPLE ORDER CONFIRMATION EMAIL
-    // ======================================
-
-    const emailText = `
-Hi ${name},
-
-Thank you for your order with YourShop!
-
-Your order #${orderId} has been successfully placed.
-
-Order Summary:
-- Total Amount: $${grandTotal.toFixed(2)}
-- Payment Method: ${payment_method.toUpperCase()}
-- Address: ${address || "Not provided"}
-- Contact: ${contact || "Not provided"}
-
-We’ll let you know when your order is shipped.
-
-Best regards,
-YourShop Team
-    `;
-
-    await resend.emails.send({
-      from: "YourShop <onboarding@resend.dev>", // or "YourShop <no-reply@yourdomain.com>" after domain verification
-      to: email,
-      subject: `Order Confirmation #${orderId}`,
-      text: emailText,
-    });
 
     return Response.json({ ok: true, order_id: orderId });
   } catch (e) {
