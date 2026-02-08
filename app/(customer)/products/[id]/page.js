@@ -132,12 +132,21 @@ export default function ProductPage() {
 }
 
 function AddToCartForm({ productId }) {
+  const { isSignedIn } = useUser();
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if user is authenticated before attempting to add to cart
+    if (!isSignedIn) {
+      if (typeof window !== 'undefined') {
+        window.location.href = `/sign-in?redirect_url=${encodeURIComponent(window.location.pathname)}`;
+      }
+      return;
+    }
+
     setLoading(true);
     setMessage("");
     
@@ -149,7 +158,9 @@ function AddToCartForm({ productId }) {
       });
 
       if (res.status === 401) {
-        setMessage("Please sign in to add items to cart.");
+        if (typeof window !== 'undefined') {
+          window.location.href = `/sign-in?redirect_url=${encodeURIComponent(window.location.pathname)}`;
+        }
         return;
       }
 
@@ -195,6 +206,7 @@ function AddToCartForm({ productId }) {
 }
 
 function ReviewForm({ productId }) {
+  const { isSignedIn } = useUser();
   const [rating, setRating] = useState("5");
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
@@ -202,6 +214,14 @@ function ReviewForm({ productId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if user is authenticated before submitting review
+    if (!isSignedIn) {
+      if (typeof window !== 'undefined') {
+        window.location.href = `/sign-in?redirect_url=${encodeURIComponent(window.location.pathname)}`;
+      }
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
@@ -217,7 +237,9 @@ function ReviewForm({ productId }) {
       });
 
       if (res.status === 401) {
-        setMessage("Please sign in to add a review.");
+        if (typeof window !== 'undefined') {
+          window.location.href = `/sign-in?redirect_url=${encodeURIComponent(window.location.pathname)}`;
+        }
         return;
       }
 
