@@ -2,59 +2,55 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 export default function Home() {
 
   const [products, setProducts] = useState([]);
-  const [deals, setdeals] = useState([]);
+  const [deals, setDeals] = useState([]);
+  const [dat, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [dat, setdata] = useState([])
-
-
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchAll = async () => {
+      setLoading(true);
       try {
-        const res = await fetch("/api/products", { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to load products");
-        const data = await res.json();
-        setProducts(data);
-      } catch (e) {
-        setError("Unable to load products right now.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
+        // Fetch all APIs in parallel
+        const [productsRes, dealsRes, reviewsRes] = await Promise.all([
+          fetch("/api/products", { cache: "no-store" }),
+          fetch("/api/deals", { cache: "no-store" }),
+          fetch("/api/special_reviews", { cache: "no-store" }),
+        ]);
 
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/special_reviews");
-        if (!res.ok) throw new Error("Failed to load reviews");
-        const data = await res.json();
-        setdata(Array.isArray(data) ? data : []);
+        // Check for errors
+        if (!productsRes.ok) throw new Error("Failed to load products");
+        if (!dealsRes.ok) throw new Error("Failed to load deals");
+        if (!reviewsRes.ok) throw new Error("Failed to load reviews");
+
+        // Parse JSON in parallel
+        const [productsData, dealsData, reviewsData] = await Promise.all([
+          productsRes.json(),
+          dealsRes.json(),
+          reviewsRes.json(),
+        ]);
+
+        // Update state
+        setProducts(productsData);
+        setDeals(dealsData);
+        setData(Array.isArray(reviewsData) ? reviewsData : []);
       } catch (err) {
         console.error(err);
-        setdata([]);
-      }
-    };
-    fetchData();
-  }, []);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/deals", { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to load products");
-        const data = await res.json();
-        setdeals(data);
-      } catch (e) {
-        setError("Unable to load products right now.");
+        setError("Unable to load data right now.");
+        setProducts([]);
+        setDeals([]);
+        setData([]);
       } finally {
         setLoading(false);
       }
     };
-    fetchProducts();
+
+    fetchAll();
   }, []);
 
   return (
@@ -70,13 +66,18 @@ export default function Home() {
           </svg>
           <div className="relative z-10 mx-auto px-6 py-21 text-center max-w-5xl">
             {/* Centered Logo Image */}
+
             <div className="relative flex items-center justify-center">
-              <img
-                src="/favicon.ico"
+              <Image
+                src="/logo.jpg"       // use .webp or .png, not .ico
                 alt="Brand Logo"
-                className="w-56 h-56 rounded-full shadow-2xl animate-float"
+                width={224}            // same as Tailwind w-56
+                height={224}           // same as Tailwind h-56
+                className="rounded-full shadow-2xl animate-float"
+                priority               // loads immediately
               />
             </div>
+
             <p className="mt-4 text-lg md:text-2xl text-green-100 drop-shadow-sm">Pure, natural and organic oils for hair, skin and wellness.</p>
             <div className="mt-10 flex items-center justify-center gap-5">
               <Link href="#products" className="bg-gradient-to-r from-[#FFD580] to-[#FFC857] text-[#2E1F1A] px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300">Shop Now</Link>
@@ -101,38 +102,38 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#BCE2B0] mb-3">Our Premium Products</h2>
               <p className="text-green-300 text-lg">Carefully curated oils for your daily self-care ritual.</p>
             </div>
-            
+
             {loading && <p className="text-center text-green-300 animate-pulse">Loading products...</p>}
             {error && <p className="text-center text-red-500">{error}</p>}
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {products.map((product) => (
                 <div key={product.id} className="group relative">
                   {/* Subtle background gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-emerald-600/5 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   <div className="relative bg-gradient-to-br from-[#1B2F20] via-[#162318] to-[#0F1C13] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 p-6 border border-[#2C4A35] hover:border-[#3C5F40] overflow-hidden h-full">
-                    
+
                     {/* Corner accent */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-green-600/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
+
                     <Link href={`/products/${product.id}`} className="relative z-10 block h-full flex flex-col">
                       {/* Product Image */}
                       <div className="aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F1C13] to-[#0A0F0D] relative mb-5">
-                        <img 
-                          src={product.image_url} 
-                          alt={product.name} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                        <img
+                          src={product.image_url}
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         {/* Overlay on hover */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
                       </div>
-                      
+
                       {/* Product Details */}
                       <h3 className="text-lg font-bold text-[#A6D787] group-hover:text-[#BCE2B0] hover:underline transition-colors duration-300 mb-2">
                         {product.name}
                       </h3>
-                      
+
                       {/* Status Badge */}
                       <div className="mb-4">
                         {product.instock ? (
@@ -147,12 +148,12 @@ export default function Home() {
                           </div>
                         )}
                       </div>
-                      
+
                       {/* Price */}
                       <p className="text-2xl font-bold text-[#81C784] mb-3 group-hover:text-[#A6D787] transition-colors">
                         Rs {Number(product.price).toFixed(2)}
                       </p>
-                      
+
                       {/* Description */}
                       <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 group-hover:text-gray-300 transition-colors flex-grow">
                         {product.description}
@@ -180,15 +181,15 @@ export default function Home() {
           </div>
 
           {loading && <p className="text-center text-[#FFD580] animate-pulse">Loading deals...</p>}
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {deals.map((product) => (
               <div key={product.id} className="group relative">
                 {/* Glow effect behind card */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FFD580]/20 to-[#FFC857]/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100" />
-                
+
                 <div className="relative bg-gradient-to-br from-[#2A3D2F] via-[#1E3A28] to-[#1A2E1F] rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 p-6 border-2 border-[#FFD580]/50 h-full flex flex-col">
-                  
+
                   {/* Deal Badge */}
                   <div className="absolute -top-4 right-6 bg-gradient-to-r from-[#FFD580] to-[#FFC857] text-[#2E1F1A] px-4 py-2 rounded-full font-bold text-sm shadow-lg z-10">
                     🎁 DEAL
@@ -200,9 +201,9 @@ export default function Home() {
                       {/* Shine effect on hover */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-12" />
                     </div>
-                    
+
                     <h3 className="text-lg font-bold text-[#FFD580] group-hover:text-[#FFEB3B] hover:underline transition-colors cursor-pointer mb-4">{product.name}</h3>
-                    
+
                     {product.instock ? (
                       <div className="flex items-center gap-2 mb-4 bg-green-600/20 px-3 py-1.5 rounded-lg w-fit">
                         <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -242,7 +243,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {dat.map((review) => (
-                <Testimonial key={review.id} quote={review.comment} name={review.user_name} rating={review.rating}/>
+                <Testimonial key={review.id} quote={review.comment} name={review.user_name} rating={review.rating} />
               ))}
             </div>
           </div>

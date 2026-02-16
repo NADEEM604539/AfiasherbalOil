@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { ShoppingCart, Menu, X, MessageCircle } from "lucide-react";
 
@@ -32,9 +33,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
           <div className="relative w-10 h-10 p-1 rounded-full bg-white shadow-lg border border-green-200 group-hover:scale-110 transition-transform duration-500 ease-out">
-            <img
-              src="/favicon.ico"
+            <Image
+              src="/logo.jpg"
               alt="Afia's Logo"
+              width={40}
+              height={40}
               className="w-full h-full object-contain rounded-full"
             />
           </div>
