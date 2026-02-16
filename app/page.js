@@ -13,45 +13,41 @@ export default function Home() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchAll = async () => {
-      setLoading(true);
+    const fetchMainData = async () => {
       try {
-        // Fetch all APIs in parallel
-        const [productsRes, dealsRes, reviewsRes] = await Promise.all([
-          fetch("/api/products", { cache: "no-store" }),
-          fetch("/api/deals", { cache: "no-store" }),
-          fetch("/api/special_reviews", { cache: "no-store" }),
+        const [productsRes, dealsRes] = await Promise.all([
+          fetch("/api/products"),
+          fetch("/api/deals"),
         ]);
 
-        // Check for errors
-        if (!productsRes.ok) throw new Error("Failed to load products");
-        if (!dealsRes.ok) throw new Error("Failed to load deals");
-        if (!reviewsRes.ok) throw new Error("Failed to load reviews");
-
-        // Parse JSON in parallel
-        const [productsData, dealsData, reviewsData] = await Promise.all([
+        const [productsData, dealsData] = await Promise.all([
           productsRes.json(),
           dealsRes.json(),
-          reviewsRes.json(),
         ]);
 
-        // Update state
         setProducts(productsData);
         setDeals(dealsData);
-        setData(Array.isArray(reviewsData) ? reviewsData : []);
       } catch (err) {
-        console.error(err);
-        setError("Unable to load data right now.");
-        setProducts([]);
-        setDeals([]);
-        setData([]);
+        setError("Unable to load products right now.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAll();
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch("/api/special_reviews");
+        const data = await res.json();
+        setData(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setData([]);
+      }
+    };
+
+    fetchMainData();   // High priority
+    fetchReviews();    // Lower priority
   }, []);
+
 
   return (
     <div>
