@@ -9,6 +9,7 @@ export default function CheckoutPage() {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cod");
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function CheckoutPage() {
       }),
     });
     setPlacing(false);
+    setShowConfirm(false); // Close modal
     if (res.ok) {
       await res.json();
       window.location.href = "/orders";
@@ -143,11 +145,43 @@ export default function CheckoutPage() {
           </p>
           <button
             disabled={placing || !contact || !address || items.length === 0}
-            onClick={placeOrder}
+            onClick={() => setShowConfirm(true)}
             className="mt-2 w-full bg-gradient-to-br from-[#356836] to-[#1F3C28] text-green-100 px-6 py-3 rounded-3xl font-semibold shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 disabled:opacity-60"
           >
             {placing ? "Placing..." : "Place Order"}
           </button>
+
+          {/* Confirmation Modal */}
+          {showConfirm && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-6">
+              <div className="bg-[#1B2F20] border border-[#3C5F40] rounded-3xl p-8 max-w-md w-full shadow-2xl animate-in fade-in zoom-in duration-300">
+                <h2 className="text-2xl font-bold text-green-200 mb-4">Confirm Your Order</h2>
+                <p className="text-green-300 mb-6 leading-relaxed">
+                  Are you sure you want to place this order? Please double-check your phone number and delivery address.
+                </p>
+                <div className="space-y-2 text-sm text-gray-400 mb-8 p-4 bg-[#132214] rounded-2xl border border-green-900/30">
+                  <p><span className="text-green-500 font-semibold">Phone:</span> {contact}</p>
+                  <p><span className="text-green-500 font-semibold">Address:</span> {address}</p>
+                  <p><span className="text-green-500 font-semibold">Total:</span> Rs {(total + 200).toFixed(2)}</p>
+                </div>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => setShowConfirm(false)}
+                    className="flex-1 px-6 py-3 rounded-2xl border border-[#3C5F40] text-green-300 font-semibold hover:bg-[#2C4A35] transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={placeOrder}
+                    disabled={placing}
+                    className="flex-1 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#FFD580] to-[#FFC857] text-[#2E1F1A] font-bold shadow-lg hover:scale-105 transition-transform disabled:opacity-50"
+                  >
+                    {placing ? "Confirming..." : "Confirm order"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <Link
             href="/cart"
             className="mt-2 block text-center text-green-300 hover:underline font-medium"
