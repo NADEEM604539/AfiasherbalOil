@@ -1,7 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { useCart } from "@/lib/CartContext";
 
 export default function CheckoutPage() {
   const [items, setItems] = useState([]);
@@ -11,6 +13,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
+  const { refreshCartCount } = useCart();
 
   useEffect(() => {
     (async () => {
@@ -44,6 +47,8 @@ export default function CheckoutPage() {
     setShowConfirm(false); // Close modal
     if (res.ok) {
       await res.json();
+      // Sync Navbar (Cart is cleared after order)
+      refreshCartCount();
       window.location.href = "/orders";
     } else {
       const j = await res.json().catch(() => ({}));

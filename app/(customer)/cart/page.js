@@ -1,13 +1,16 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { useCart } from "@/lib/CartContext";
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [updatingId, setUpdatingId] = useState(null);
+  const { refreshCartCount } = useCart();
 
   const fetchCart = async () => {
     try {
@@ -56,6 +59,8 @@ export default function CartPage() {
       if (!res.ok) {
         throw new Error("Update failed");
       }
+      // Sync Navbar
+      refreshCartCount();
     } catch (err) {
       // 2️⃣ Revert if API fails
       setItems(previousItems);
@@ -81,6 +86,8 @@ export default function CartPage() {
       if (!res.ok) {
         throw new Error("Delete failed");
       }
+      // Sync Navbar
+      refreshCartCount();
     } catch (err) {
       setItems(previousItems);
       setError("Failed to remove item.");

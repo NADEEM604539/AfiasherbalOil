@@ -67,6 +67,8 @@ export const metadata = {
   },
 };
 
+import { CartProvider } from "@/lib/CartContext";
+
 export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -92,20 +94,22 @@ export default function RootLayout({ children }) {
 
   return (
     <ClerkProvider>
-      <html lang="en">
-        <head>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-        </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-          <Footer />
-        </body>
-      </html>
+      <CartProvider>
+        <html lang="en">
+          <head>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+          </head>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </CartProvider>
     </ClerkProvider>
   );
 }

@@ -101,11 +101,14 @@ export default function ProductPageClient({ initialProduct, initialReviews }) {
   );
 }
 
+import { useCart } from "@/lib/CartContext";
+
 function AddToCartForm({ productId }) {
   const { isSignedIn } = useUser();
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const { refreshCartCount } = useCart();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,6 +136,8 @@ function AddToCartForm({ productId }) {
 
       setMessage("✓ Added to cart!");
       setQuantity(1);
+      // Sync Navbar
+      refreshCartCount();
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
       setMessage("Error adding to cart.");

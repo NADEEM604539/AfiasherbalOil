@@ -6,26 +6,12 @@ import Image from "next/image";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { ShoppingCart, Menu, X, MessageCircle } from "lucide-react";
 
+import { useCart } from "@/lib/CartContext";
+
 export default function Navbar() {
   const { isSignedIn } = useUser();
   const [open, setOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  useEffect(() => {
-    async function getCartCount() {
-      try {
-        const response = await fetch("/api/check_cart");
-        if (!response.ok) throw new Error("Failed to fetch cart");
-        const data = await response.json();
-        setCartCount(data.count || 0);
-      } catch (error) {
-        console.error("Error fetching cart:", error);
-        setCartCount(0);
-      }
-    }
-
-    if (isSignedIn) getCartCount();
-  }, [isSignedIn]);
+  const { cartCount } = useCart();
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-[#0B1410] via-[#16221A] to-[#1F3323] shadow-lg border-b border-[#2C4A35]/40 backdrop-blur-sm">
