@@ -163,7 +163,7 @@ export default function Home() {
         </section>
 
         {/* Deals Section - Special Styling */}
-        <section className="py-20 px-6 md:px-16 bg-gradient-to-b from-[#13221F] via-[#1A2F22] to-[#13221F]">
+        <section id="deals" className="py-20 px-6 md:px-16 bg-gradient-to-b from-[#13221F] via-[#1A2F22] to-[#13221F]">
           <div className="relative mb-12">
             <div className="absolute inset-0 bg-gradient-to-r from-[#FFD580]/10 via-transparent to-[#FFD580]/10 rounded-lg blur-xl" />
             <div className="relative">
