@@ -65,6 +65,9 @@ export const metadata = {
     icon: '/favicon.ico',
     apple: '/logo.jpg',
   },
+  verification: {
+    google: "aOvx6LD9u_TnyzXI3zqvzubFyTV81TIx_a6BXaUtP1U",
+  },
 };
 
 import { CartProvider } from "@/lib/CartContext";
