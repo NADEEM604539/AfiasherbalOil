@@ -76,7 +76,7 @@ export default async function ProductPage({ params }) {
       price: product.price,
       priceCurrency: 'PKR',
       availability: product.instock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `https://afiasherbaloil.com/products/${id}`
+      url: `https://www.afias.pk/products/${id}`
     },
     brand: {
       '@type': 'Brand',

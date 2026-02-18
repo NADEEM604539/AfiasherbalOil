@@ -35,14 +35,14 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://afiasherbaloil.com'), // Replace with actual domain
+  metadataBase: new URL('https://www.afias.pk'), // Replace with actual domain
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Afia's Herbal Oil | Pure, Natural & Organic Care Products",
     description: "Discover the power of nature with Afia's Herbal Oil. Premium hair and skin care products crafted to restore balance and bring out your natural radiance.",
-    url: 'https://afiasherbaloil.com',
+    url: 'https://www.afias.pk',
     siteName: "Afia's Herbal Oil",
     images: [
       {
@@ -74,8 +74,8 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: "Afia's Herbal Oil",
-    url: 'https://afiasherbaloil.com',
-    logo: 'https://afiasherbaloil.com/logo.jpg',
+    url: 'https://www.afias.pk',
+    logo: 'https://www.afias.pk/logo.jpg',
     description: "Pure, natural and organic oils for hair, skin and wellness.",
     sameAs: [
       // Add social media links here
