@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 import {
   ClerkProvider,
   SignInButton,
@@ -22,11 +23,11 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "Afia's Herbal Oil | Pure, Natural & Organic Care Products",
+    default: "Afia's Herbal Oil | Pure, Natural & Organic Oils in Pakistan",
     template: "%s | Afia's Herbal Oil"
   },
-  description: "Rooted in nature and guided by purity, Afia's Herbal Oil offers lovingly crafted hair and skin care products. 100% natural, cold-pressed, and organic oils to bring out your natural radiance.",
-  keywords: ["herbal oil", "organic hair oil", "natural skin care", "cold-pressed oils", "Pakistan", "Afia's herbal", "pure essential oils"],
+  description: "Shop premium quality herbal oils, organic hair care, and natural skin care products at Afia's Herbal Oil in Pakistan. 100% natural, cold-pressed, and organic.",
+  keywords: ["herbal oil", "organic hair oil", "natural skin care", "cold-pressed oils", "Pakistan", "Afia's herbal", "pure essential oils", "hair growth oil", "skin glow oil"],
   authors: [{ name: "Afia's Herbal Oil" }],
   creator: "Afia's Herbal Oil",
   publisher: "Afia's Herbal Oil",
@@ -35,7 +36,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.afias.pk'), // Replace with actual domain
+  metadataBase: new URL('https://www.afias.pk'),
   alternates: {
     canonical: '/',
   },
@@ -81,7 +82,9 @@ export default function RootLayout({ children }) {
     logo: 'https://www.afias.pk/logo.jpg',
     description: "Pure, natural and organic oils for hair, skin and wellness.",
     sameAs: [
-      // Add social media links here
+      'https://www.facebook.com/afiasherbaloil', // UPDATE with your actual links
+      'https://www.instagram.com/afiasherbaloil',
+      'https://twitter.com/afiasherbaloil'
     ],
     address: {
       '@type': 'PostalAddress',
@@ -100,6 +103,19 @@ export default function RootLayout({ children }) {
       <CartProvider>
         <html lang="en">
           <head>
+            {/* Google Analytics - Placeholder ID: ADD_YOUR_GA_ID_HERE */}
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=ADD_YOUR_GA_ID_HERE`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'ADD_YOUR_GA_ID_HERE');
+              `}
+            </Script>
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

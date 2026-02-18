@@ -74,7 +74,8 @@ export default function Home() {
               />
             </div>
 
-            <p className="mt-4 text-lg md:text-2xl text-green-100 drop-shadow-sm">Pure, natural and organic oils for hair, skin and wellness.</p>
+            <h1 className="mt-4 text-2xl md:text-3xl font-bold text-green-100 drop-shadow-sm uppercase tracking-wider">Pure Herbal & Organic Oils for Hair and Skin</h1>
+            <p className="mt-2 text-lg md:text-xl text-green-200 opacity-90 italic">Nurturing your beauty with nature's purest essence.</p>
             <div className="mt-10 flex items-center justify-center gap-5">
               <Link href="#products" className="bg-gradient-to-r from-[#FFD580] to-[#FFC857] text-[#2E1F1A] px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300">Shop Now</Link>
               <Link href="/chat" className="border border-gray-300 text-gray-100 px-8 py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors">Ask an Expert</Link>
@@ -95,8 +96,8 @@ export default function Home() {
         <section id="products" className="py-20 px-6 md:px-16 bg-gradient-to-b from-[#13221F] via-[#1A2F22] to-[#13221F]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#BCE2B0] mb-3">Our Premium Products</h2>
-              <p className="text-green-300 text-lg">Carefully curated oils for your daily self-care ritual.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#BCE2B0] mb-3 uppercase tracking-tight">Our Premium Herbal Oils</h2>
+              <p className="text-green-300 text-lg italic">Carefully curated oils for your daily self-care ritual.</p>
             </div>
 
             {loading && <p className="text-center text-green-300 animate-pulse">Loading products...</p>}
@@ -116,10 +117,12 @@ export default function Home() {
                     <Link href={`/products/${product.id}`} className="relative z-10 block h-full flex flex-col">
                       {/* Product Image */}
                       <div className="aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F1C13] to-[#0A0F0D] relative mb-5">
-                        <img
+                        <Image
                           src={product.image_url}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          alt={`${product.name} - Pure Organic Herbal Oil`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         {/* Overlay on hover */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
@@ -169,10 +172,10 @@ export default function Home() {
             <div className="relative">
               <div className="flex items-center justify-center gap-4">
                 <span className="text-3xl">✨</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD580] to-[#FFC857]">Special Deals</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD580] to-[#FFC857]">Special Offers & Deals</h2>
                 <span className="text-3xl">✨</span>
               </div>
-              <p className="text-center text-[#FFD580] mt-3 font-semibold">Limited time offers on premium products</p>
+              <p className="text-center text-[#FFD580] mt-3 font-semibold uppercase tracking-wider">Save on our best-selling organic oils</p>
             </div>
           </div>
 
@@ -188,12 +191,18 @@ export default function Home() {
 
                   {/* Deal Badge */}
                   <div className="absolute -top-4 right-6 bg-gradient-to-r from-[#FFD580] to-[#FFC857] text-[#2E1F1A] px-4 py-2 rounded-full font-bold text-sm shadow-lg z-10">
-                    🎁 DEAL
+                    🎁 SPECIAL DEAL
                   </div>
 
                   <Link href={`/products/${product.id}`} className="text-[#BCE2B0] font-medium block flex flex-col h-full">
                     <div className="aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#1A2E1B] to-[#0F1C13] relative ring-2 ring-[#FFD580]/30 mb-5">
-                      <img src={product.image_url} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <Image
+                        src={product.image_url}
+                        alt={`${product.name} - Discounted Herbal Oil`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                       {/* Shine effect on hover */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-12" />
                     </div>

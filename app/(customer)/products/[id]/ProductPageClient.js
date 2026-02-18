@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function ProductPageClient({ initialProduct, initialReviews }) {
   const { isSignedIn } = useUser();
@@ -23,11 +24,13 @@ export default function ProductPageClient({ initialProduct, initialReviews }) {
 
         <div className="relative z-10 mt-6 grid md:grid-cols-2 gap-10">
           {/* Product Image */}
-          <div className="rounded-2xl overflow-hidden shadow-xl border border-green-900/30 bg-[#1B2F20]/70 backdrop-blur-sm">
-            <img
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-green-900/30 bg-[#1B2F20]/70 backdrop-blur-sm relative aspect-square">
+            <Image
               src={product.image_url}
-              alt={product.name}
-              className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+              alt={`${product.name} - Pure Organic Herbal Oil`}
+              fill
+              priority
+              className="object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
 
