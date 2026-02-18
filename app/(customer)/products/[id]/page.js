@@ -33,9 +33,6 @@ export async function generateMetadata({ params }) {
         description: product.description.substring(0, 160),
         images: [product.image_url],
       },
-      alternates: {
-        canonical: `/products/${id}`,
-      },
     };
   } catch (error) {
     console.error("Error generating metadata:", error);
