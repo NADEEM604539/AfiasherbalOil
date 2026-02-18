@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/api/', '/sign-in', '/sign-up', '/checkout'],
     },
-    sitemap: 'https://afiasherbaloil.com/sitemap.xml',
+    sitemap: 'https://afias.pk/sitemap.xml',
   }
 }

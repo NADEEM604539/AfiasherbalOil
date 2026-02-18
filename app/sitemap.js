@@ -6,7 +6,6 @@ export default async function sitemap() {
   // Base routes
   const routes = [
     '',
-    '#products',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
