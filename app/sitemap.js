@@ -1,7 +1,7 @@
 import db from "@/lib/db";
 
 export default async function sitemap() {
-  const baseUrl = 'https://afiasherbaloil.com';
+  const baseUrl = 'https://afias.pk';
 
   // Base routes
   const routes = [
