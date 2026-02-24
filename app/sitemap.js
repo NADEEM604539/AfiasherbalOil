@@ -15,7 +15,7 @@ export default async function sitemap() {
 
   // Product routes
   try {
-    const [products] = await db.query("SELECT id, updated_at FROM products WHERE instock = 1");
+    const [products] = await db.query("SELECT id, created_at as updated_at FROM products WHERE instock = 1");
     const productRoutes = products.map((product) => ({
       url: `${baseUrl}/products/${product.id}`,
       lastModified: product.updated_at || new Date(),
