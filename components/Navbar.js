@@ -1,77 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { ShoppingCart, Menu, X, MessageCircle } from "lucide-react";
-
 import { useCart } from "@/lib/CartContext";
 
 export default function Navbar() {
   const { isSignedIn } = useUser();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { cartCount } = useCart();
 
   return (
-    <nav className="sticky top-0 z-50 bg-gradient-to-r from-[#0B1410] via-[#16221A] to-[#1F3323] shadow-lg border-b border-[#2C4A35]/40 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-3">
+    <nav className="sticky top-0 z-50 w-full bg-[#FFF2E1] border-b border-[#D4A574]/30 shadow-xl">
+      {/* Full width container */}
+      <div className="w-full flex items-center justify-between px-6 lg:px-16 py-2">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          <div className="relative w-10 h-10 p-1 rounded-full bg-white shadow-lg border border-green-200 group-hover:scale-110 transition-transform duration-500 ease-out">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-[#A79277] shadow-md">
             <Image
               src="/logo.jpg"
               alt="Afia's Logo"
-              width={40}
-              height={40}
-              className="w-full h-full object-contain rounded-full"
+              fill
+              className="object-cover"
             />
           </div>
-          <h1 className="text-2xl font-extrabold text-green-700 tracking-wide group-hover:tracking-wider transition-all duration-300">
-            Afia<span className="text-emerald-400">&apos;s</span>
+          <h1 className="text-3xl font-bold text-[#102C26] tracking-wide">
+            Afia<span className="text-[#A79277]">'s</span>
           </h1>
         </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-6">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/#products">Products</NavLink>
-          <NavLink href="/#deals">Deals</NavLink>
-          <NavLink href="/orders">Orders</NavLink>
-          <NavLink href="/chat">Chat</NavLink>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-15 bg-[#102C26] px-2 py-1 rounded-xl border border-[#0A1A15]/40">
+          <NavLink href="/" pathname={pathname}>Home</NavLink>
+          <NavLink href="/#products" pathname={pathname}>Products</NavLink>
+          <NavLink href="/#deals" pathname={pathname}>Deals</NavLink>
+          <NavLink href="/orders" pathname={pathname}>Orders</NavLink>
+          <NavLink href="/chat" pathname={pathname}>Chat</NavLink>
         </div>
 
-        {/* Right side */}
+        {/* Right Section */}
         <div className="flex items-center gap-4">
-          {/* Chat button (mobile) */}
-          <Link href="/chat" className="relative md:hidden p-2 rounded-md hover:bg-emerald-600/20 transition">
-            <MessageCircle className="w-6 h-6 text-green-200 hover:text-emerald-300 transition-colors duration-300" />
+          {/* Mobile Chat */}
+          <Link
+            href="/chat"
+            className="md:hidden p-2 rounded-lg hover:bg-[#A79277]/20 transition"
+          >
+            <MessageCircle className="w-6 h-6 text-[#102C26]" />
           </Link>
 
           {/* Cart */}
-          <Link href="/cart" className="relative p-2 rounded-md hover:bg-emerald-600/20 transition">
-            <ShoppingCart className="w-6 h-6 text-green-200 hover:text-emerald-300 transition-colors duration-300" />
+          <Link
+            href="/cart"
+            className="relative p-2 rounded-lg hover:bg-[#A79277]/20 transition"
+          >
+            <ShoppingCart className="w-6 h-6 text-[#102C26]" />
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs font-semibold rounded-full px-2 animate-pulse shadow-md">
+              <span className="absolute -top-2 -right-2 bg-[#102C26] text-[#FFF2E1] text-xs font-bold rounded-full px-2 py-0.5 shadow-md">
                 {cartCount}
               </span>
             )}
           </Link>
 
-          {/* User */}
+          {/* Auth */}
           {isSignedIn ? (
             <UserButton afterSignOutUrl="/" />
           ) : (
-            <Link href={`/sign-in?redirect_url=${encodeURIComponent("/")}`}>
-              <button className="px-4 py-2 bg-emerald-600 text-white rounded-lg shadow-md hover:bg-emerald-500 hover:scale-105 transform transition-all duration-300">
-                Sign in
+            <Link href="/sign-in">
+              <button className="px-5 py-2 bg-[#102C26] hover:bg-[#0A1A15] text-[#FFF2E1] font-semibold rounded-lg transition-all duration-200 shadow-md">
+                Sign In
               </button>
             </Link>
           )}
 
-          {/* Mobile menu toggle */}
+          {/* Mobile Toggle */}
           <button
-            className="md:hidden text-green-200 hover:text-emerald-300 transition"
+            className="md:hidden text-[#102C26]"
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={28} /> : <Menu size={28} />}
@@ -79,39 +86,48 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-[#0B1410]/95 border-t border-[#2C4A35]/40 px-6 py-6 space-y-4 text-green-100">
-          <NavLink href="/" onClick={() => setOpen(false)}>
-            Home
-          </NavLink>
-          <NavLink href="/#products" onClick={() => setOpen(false)}>
-            Products
-          </NavLink>
-          <NavLink href="/#deals" onClick={() => setOpen(false)}>
-            Deals
-          </NavLink>
-          <NavLink href="/orders" onClick={() => setOpen(false)}>
-            Orders
-          </NavLink>
-          <NavLink href="/chat" onClick={() => setOpen(false)}>
-            Chat
-          </NavLink>
+        <div className="md:hidden w-full bg-[#102C26] border-t border-[#0A1A15]/40 px-6 py-6 space-y-3">
+          <MobileLink href="/" setOpen={setOpen}>Home</MobileLink>
+          <MobileLink href="/#products" setOpen={setOpen}>Products</MobileLink>
+          <MobileLink href="/#deals" setOpen={setOpen}>Deals</MobileLink>
+          <MobileLink href="/orders" setOpen={setOpen}>Orders</MobileLink>
+          <MobileLink href="/chat" setOpen={setOpen}>Chat</MobileLink>
         </div>
       )}
     </nav>
   );
 }
 
-function NavLink({ href, children, onClick }) {
+function NavLink({ href, children, pathname }) {
+  const isActive =
+    href === "/"
+      ? pathname === "/"
+      : pathname.startsWith(href.replace("/#", "/"));
+
   return (
     <Link
       href={href}
-      onClick={onClick}
-      className="relative inline-flex items-center px-4 py-2 rounded-lg font-medium text-green-100 hover:text-emerald-300 transition-colors duration-300 group"
+      className={`px-5 py-3 rounded-lg text-lg font-bold transition-all duration-200 ${
+        isActive
+          ? "bg-[#F7E7CE] text-[#102C26] shadow-md"
+          : "text-[#F7E7CE] hover:bg-[#1A4A42] hover:text-white"
+      }`}
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-400 transition-all group-hover:w-full"></span>
+    </Link>
+  );
+}
+
+function MobileLink({ href, children, setOpen }) {
+  return (
+    <Link
+      href={href}
+      onClick={() => setOpen(false)}
+      className="block w-full px-5 py-3 rounded-lg text-lg font-bold text-[#F7E7CE] hover:bg-[#1A4A42] hover:text-white transition"
+    >
+      {children}
     </Link>
   );
 }
