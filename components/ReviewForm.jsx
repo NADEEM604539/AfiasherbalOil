@@ -38,7 +38,7 @@ export default function ReviewForm({ orderId }) {
   };
 
   return (
-    <div className="flex justify-center px-4 md:px-0">
+    <div className="flex justify-center px-4 py-2 md:px-0">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-2xl bg-[#102016]/80 border border-[#2C4A35] rounded-3xl p-8 md:p-12 backdrop-blur-md shadow-2xl space-y-6"
