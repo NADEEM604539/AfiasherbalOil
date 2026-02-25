@@ -40,6 +40,7 @@ export default function Navbar() {
           <NavLink href="/#deals" pathname={pathname}>Deals</NavLink>
           <NavLink href="/orders" pathname={pathname}>Orders</NavLink>
           <NavLink href="/chat" pathname={pathname}>Chat</NavLink>
+          <NavLink href="/about" pathname={pathname}>About</NavLink>
         </div>
 
         {/* Right Section */}
@@ -93,6 +94,7 @@ export default function Navbar() {
           <MobileLink href="/#products" setOpen={setOpen}>Products</MobileLink>
           <MobileLink href="/#deals" setOpen={setOpen}>Deals</MobileLink>
           <MobileLink href="/orders" setOpen={setOpen}>Orders</MobileLink>
+          <MobileLink href="/about" setOpen={setOpen}>About</MobileLink>
           <MobileLink href="/chat" setOpen={setOpen}>Chat</MobileLink>
         </div>
       )}

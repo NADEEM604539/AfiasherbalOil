@@ -1,26 +1,26 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#102C26] to-[#0F1F1A] border-t-4 border-[#F7E7CE] relative overflow-hidden" style={{ zIndex: 5 }}>
+    <footer className="bg-gradient-to-b from-[#F5E6D3] via-[#FBF0E0] to-[#F7E7CE] border-t-4 border-[#248D76] relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#F7E7CE] rounded-full blur-3xl opacity-5 -mr-32 -mt-32" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#A79277] rounded-full blur-3xl opacity-5 -ml-32 -mb-32" />
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[#248D76]/5 rounded-full blur-3xl -mr-32 -mt-32" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#102C26]/5 rounded-full blur-3xl -ml-32 -mb-32" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 grid md:grid-cols-4 gap-12 text-[#F7E7CE] relative z-10">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-12 grid md:grid-cols-4 gap-4 md:gap-8 relative z-10">
         {/* About Section */}
         <div>
-          <h3 className="text-2xl font-black text-[#FFF2E1] mb-4 uppercase">Afia&apos;s</h3>
-          <p className="text-[#F7E7CE] text-sm leading-relaxed font-semibold">
-            Pure, natural and organic oils for hair, skin, and wellness. Sustainably sourced, 
-            carefully crafted, and made with love for your self-care rituals.
+          <h3 className="text-xl font-black text-[#102C26] uppercase tracking-wide mb-2 md:mb-3">Afia&#39;s</h3>
+          <p className="text-[#6B4F2F] text-xs leading-relaxed font-medium">
+            Pure, natural and organic oils for hair, skin, and wellness. Sustainably sourced, carefully crafted, and made with love for your self-care rituals.
           </p>
-          <div className="mt-6 flex gap-4">
-            <Link href="https://www.facebook.com/share/1KJrchaFDp/" target="_blank" className="bg-[#F7E7CE]/10 hover:bg-[#F7E7CE]/20 border-2 border-[#F7E7CE] text-[#FFF2E1] p-3 rounded-full transition-all duration-300 hover:scale-110">
+          <div className="mt-2 md:mt-3 flex gap-4">
+            <Link href="https://www.facebook.com/share/1KJrchaFDp/" target="_blank" className="bg-white border-2 border-[#248D76] text-[#248D76] p-3 rounded-full hover:bg-[#248D76] hover:text-white transition-all duration-300 hover:scale-110">
               <Facebook className="w-5 h-5" />
             </Link>
-            <Link href="https://www.instagram.com/made.byafia?igsh=MWhrdnpzazdzMGV1dQ==" target="_blank" className="bg-[#F7E7CE]/10 hover:bg-[#F7E7CE]/20 border-2 border-[#F7E7CE] text-[#FFF2E1] p-3 rounded-full transition-all duration-300 hover:scale-110">
+            <Link href="https://www.instagram.com/made.byafia?igsh=MWhrdnpzazdzMGV1dQ==" target="_blank" className="bg-white border-2 border-[#248D76] text-[#248D76] p-3 rounded-full hover:bg-[#248D76] hover:text-white transition-all duration-300 hover:scale-110">
               <Instagram className="w-5 h-5" />
             </Link>
           </div>
@@ -28,74 +28,64 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 className="font-black text-[#FFF2E1] mb-4 text-lg uppercase">Quick Links</h4>
-          <ul className="space-y-3 text-sm">
-            <li><Link href="/" className="text-[#F7E7CE] hover:text-[#FFF2E1] font-semibold transition duration-300 hover:underline">Home</Link></li>
-            <li><Link href="/#products" className="text-[#F7E7CE] hover:text-[#FFF2E1] font-semibold transition duration-300 hover:underline">Shop Products</Link></li>
-            <li><Link href="/#deals" className="text-[#F7E7CE] hover:text-[#FFF2E1] font-semibold transition duration-300 hover:underline">Special Deals</Link></li>
-            <li><Link href="/orders" className="text-[#F7E7CE] hover:text-[#FFF2E1] font-semibold transition duration-300 hover:underline">My Orders</Link></li>
-            <li><Link href="/chat" className="text-[#F7E7CE] hover:text-[#FFF2E1] font-semibold transition duration-300 hover:underline">Chat Support</Link></li>
+          <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Quick Links</h4>
+          <ul className="space-y-1 md:space-y-2 text-sm">
+            <li><Link href="/" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Home</Link></li>
+            <li><Link href="/#products" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Shop Products</Link></li>
+            <li><Link href="/#deals" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Special Deals</Link></li>
+            <li><Link href="/orders" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ My Orders</Link></li>
+            <li><Link href="/chat" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Chat Support</Link></li>
           </ul>
         </div>
 
         {/* Contact Info */}
         <div>
-          <h4 className="font-black text-[#FFF2E1] mb-4 text-lg uppercase">Contact Us</h4>
-          <div className="space-y-4 text-sm">
-            <div className="flex items-start gap-3">
-              <Phone className="w-5 h-5 text-[#FFF2E1] flex-shrink-0 mt-1" /> 
+          <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Contact Us</h4>
+          <div className="space-y-2 md:space-y-3 text-sm">
+            <div className="flex items-start gap-2">
+              <Phone className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[#FFF2E1] font-bold">Phone</p>
-                <a href="tel:+923336419935" className="text-[#F7E7CE] hover:text-[#FFF2E1] transition font-semibold">+92 333 6419935</a>
+                <p className="text-[#102C26] font-bold">Phone</p>
+                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#248D76] transition font-semibold">+92 333 6419935</a>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <Mail className="w-5 h-5 text-[#FFF2E1] flex-shrink-0 mt-1" /> 
+            <div className="flex items-start gap-2">
+              <Mail className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[#FFF2E1] font-bold">Email</p>
-                <a href="mailto:abidamansoora016@gmail.com" className="text-[#F7E7CE] hover:text-[#FFF2E1] transition font-semibold">abidamansoora016@gmail.com</a>
+                <p className="text-[#102C26] font-bold">Email</p>
+                <a href="mailto:abidamansoora016@gmail.com" className="text-[#6B4F2F] hover:text-[#248D76] transition font-semibold text-xs break-all">abidamansoora016@gmail.com</a>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-[#FFF2E1] flex-shrink-0 mt-1" /> 
+            <div className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[#FFF2E1] font-bold">Location</p>
-                <p className="text-[#F7E7CE] font-semibold">Pakistan</p>
+                <p className="text-[#102C26] font-bold">Location</p>
+                <p className="text-[#6B4F2F] font-semibold">Pakistan</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Newsletter */}
+        {/* Legal Links */}
         <div>
-          <h4 className="font-black text-[#FFF2E1] mb-4 text-lg uppercase">Newsletter</h4>
-          <p className="text-[#F7E7CE] text-sm font-semibold mb-4">
-            Subscribe to get special offers and updates about new products!
-          </p>
-          <div className="flex flex-col gap-3">
-            <input 
-              type="email" 
-              placeholder="Your email" 
-              className="px-4 py-3 rounded-lg bg-[#1A4A42] border-2 border-[#F7E7CE] text-white placeholder-gray-400 focus:outline-none focus:border-[#FFF2E1] transition font-semibold"
-            />
-            <button className="bg-gradient-to-r from-[#A79277] to-[#6B4F2F] text-white px-4 py-3 rounded-lg font-black hover:shadow-lg transition-all duration-300 uppercase">
-              Subscribe
-            </button>
-          </div>
+          <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Legal</h4>
+          <ul className="space-y-2 md:space-y-3 text-sm">
+            <li><Link href="/about#privacy" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Privacy Policy</Link></li>
+            <li><Link href="/about#terms" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Terms & Conditions</Link></li>
+            <li><Link href="/about" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ About Us</Link></li>
+          </ul>
         </div>
+
+        
+
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t-2 border-[#F7E7CE]/30 bg-[#0F1F1A] bg-opacity-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[#F7E7CE] text-sm">
+      <div className="border-t-2 border-[#248D76]/30 bg-white/40">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-3 text-[#6B4F2F] text-xs md:text-sm">
           <p className="font-semibold">
-            © 2024 <span className="text-[#FFF2E1] font-black">Afia&apos;s Herbal Oils</span>. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-[#102C26] font-black">Afia&#39;s Herbal Oils</span>. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/chat" className="hover:text-[#FFF2E1] transition font-semibold">Privacy Policy</Link>
-            <Link href="/chat" className="hover:text-[#FFF2E1] transition font-semibold">Terms & Conditions</Link>
-            <Link href="/chat" className="hover:text-[#FFF2E1] transition font-semibold">Support</Link>
-          </div>
         </div>
       </div>
     </footer>
