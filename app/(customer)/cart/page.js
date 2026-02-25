@@ -135,12 +135,12 @@ export default function CartPage() {
               {items.map((it) => (
                 <div
                   key={it.id}
-                  className="flex items-center gap-4 border-2 border-[#F7E7CE] rounded-2xl p-4 bg-white shadow-lg hover:shadow-2xl hover:border-[#248D76] transition-all duration-300"
+                  className="flex flex-col sm:flex-row sm:items-center gap-4 border-2 border-[#F7E7CE] rounded-2xl p-4 bg-white shadow-lg hover:shadow-2xl hover:border-[#248D76] transition-all duration-300"
                 >
                   <img
                     src={it.image_url}
                     alt={it.name}
-                    className="w-24 h-24 object-cover rounded-lg border border-[#F7E7CE]"
+                    className="w-full sm:w-24 h-48 sm:h-24 object-cover rounded-lg border border-[#F7E7CE]"
                   />
 
                   <div className="flex-1">
@@ -152,7 +152,7 @@ export default function CartPage() {
                       Rs {Number(it.price).toFixed(2)}
                     </p>
 
-                    <div className="mt-3 flex items-center gap-3">
+                    <div className="mt-3 flex flex-wrap items-center gap-3">
 
                       {/* Minus */}
                       <button
@@ -183,7 +183,7 @@ export default function CartPage() {
                       {/* Remove */}
                       <button
                         disabled={updatingId === it.id}
-                        className="ml-4 text-red-600 hover:text-red-700 font-semibold transition disabled:opacity-50"
+                        className="ml-auto text-red-600 hover:text-red-700 font-semibold transition disabled:opacity-50"
                         onClick={() => removeItem(it.id)}
                       >
                         Remove
