@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#102C26] to-[#0F1F1A] border-t-4 border-[#F7E7CE] mt-20 relative overflow-hidden" style={{ zIndex: 5 }}>
+    <footer className="bg-gradient-to-b from-[#102C26] to-[#0F1F1A] border-t-4 border-[#F7E7CE] relative overflow-hidden" style={{ zIndex: 5 }}>
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#F7E7CE] rounded-full blur-3xl opacity-5 -mr-32 -mt-32" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#A79277] rounded-full blur-3xl opacity-5 -ml-32 -mb-32" />
