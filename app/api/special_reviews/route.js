@@ -40,6 +40,7 @@ export async function GET() {
         users.name AS user_name
       FROM special_reviews
       JOIN users ON special_reviews.user_id = users.id
+      where special_reviews.approved = true
       ORDER BY special_reviews.created_at DESC
       LIMIT 6
     `);
