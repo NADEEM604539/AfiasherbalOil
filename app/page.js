@@ -18,23 +18,20 @@ export const metadata = {
 
 async function fetchData() {
   try {
-    // Fetch products
-    const response = await fetch("http://localhost:3000/api/products", {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
-    const products = await response.json();
+    // Query products directly from database
+    const [products] = await db.query(
+      "SELECT id, name, description, image_url, price, instock FROM products WHERE instock = 1 ORDER BY id DESC"
+    );
 
-    // Fetch deals
-    const dealsResponse = await fetch("http://localhost:3000/api/deals", {
-      next: { revalidate: 3600 },
-    });
-    const deals = await dealsResponse.json();
+    // Query deals directly from database (assuming there's a deals column or separate table)
+    const [deals] = await db.query(
+      "SELECT id, name, description, image_url, price, instock FROM products WHERE instock = 1 LIMIT 3"
+    );
 
-    // Fetch reviews
-    const reviewResponse = await fetch("http://localhost:3000/api/special_reviews", {
-      next: { revalidate: 3600 },
-    });
-    const reviews = await reviewResponse.json();
+    // Query special reviews directly from database
+    const [reviews] = await db.query(
+      "SELECT id, user_name, comment, rating FROM reviews ORDER BY id DESC LIMIT 6"
+    );
 
     return {
       products: Array.isArray(products) ? products : [],
