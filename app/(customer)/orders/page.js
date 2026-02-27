@@ -3,6 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 
+export const metadata = {
+  title: "My Orders | Afia's Herbal Oil",
+  description: "View and track your orders. Check delivery status and order history.",
+  robots: "noindex", // Don't index order pages
+};
+
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);

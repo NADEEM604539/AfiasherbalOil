@@ -5,6 +5,12 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { useCart } from "@/lib/CartContext";
 
+export const metadata = {
+  title: "Shopping Cart | Afia's Herbal Oil",
+  description: "View and manage your shopping cart. Checkout securely with your Afia's Herbal Oil orders.",
+  robots: "noindex", // Don't index cart pages
+};
+
 export default function CartPage() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
