@@ -47,7 +47,7 @@ export default async function sitemap() {
   let productRoutes = [];
   try {
     const [products] = await db.query(
-      "SELECT id, updated_at FROM products WHERE instock = 1 ORDER BY updated_at DESC"
+      "SELECT id, created_at as updated_at FROM products WHERE instock = 1 ORDER BY updated_at DESC"
     );
     
     productRoutes = products.map((product) => ({
