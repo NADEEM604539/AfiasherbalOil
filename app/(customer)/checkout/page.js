@@ -5,11 +5,6 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { useCart } from "@/lib/CartContext";
 
-export const metadata = {
-  title: "Checkout | Afia's Herbal Oil",
-  description: "Complete your purchase securely. Fast shipping and multiple payment options available.",
-  robots: "noindex", // Don't index checkout pages
-};
 
 export default function CheckoutPage() {
   const [items, setItems] = useState([]);

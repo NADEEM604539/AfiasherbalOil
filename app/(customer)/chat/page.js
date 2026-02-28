@@ -3,11 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 
-export const metadata = {
-  title: "Chat with Experts | Afia's Herbal Oil",
-  description: "Chat with our herbal oil experts. Get product recommendations and answers to your questions.",
-  robots: "noindex", // Don't index chat pages
-};
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
