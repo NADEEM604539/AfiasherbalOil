@@ -29,9 +29,18 @@ async function fetchData() {
     );
 
     // Query special reviews directly from database
-    const [reviews] = await db.query(
-      "SELECT id, user_name, comment, rating FROM reviews ORDER BY id DESC LIMIT 6"
-    );
+    const [reviews] = await db.query(`
+  SELECT 
+    sr.id,
+    u.name AS user_name,
+    sr.comment,
+    sr.rating
+  FROM special_reviews sr
+  JOIN users u ON sr.user_id = u.id
+  WHERE sr.approved = TRUE
+  ORDER BY sr.created_at DESC
+  LIMIT 6
+`);
 
     return {
       products: Array.isArray(products) ? products : [],
