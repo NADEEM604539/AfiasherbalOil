@@ -34,8 +34,7 @@ async function fetchData() {
     );
 
     // Query special reviews directly from database
-    const [reviews] = await db.query(`
-  SELECT 
+    const [reviews] = await db.query(`SELECT 
     sr.id,
     u.name AS user_name,
     sr.comment,
