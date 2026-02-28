@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: ['/', '/about'],
-      disallow: ['/api/', '/sign-in', '/sign-up', '/checkout', '/cart', '/orders'],
+      disallow: ['/api/', '/sign-in', '/sign-up', '/checkout', '/cart', '/orders/', '/chat'],
     },
     sitemap: 'https://www.afias.pk/sitemap.xml',
   }
