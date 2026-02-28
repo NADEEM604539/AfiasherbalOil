@@ -5,12 +5,17 @@ import HomePageClient from "./HomePageClient";
 import db from "@/lib/db";
 
 export const metadata = {
-  title: "Afia's Herbal Oil | Pure, Natural & Organic Care Products",
-  description: "Discover premium herbal oils & organic skincare products. Cold-pressed, 100% natural, sustainably sourced. Shop authentic oils with fast delivery across Pakistan.",
-  keywords: ["herbal oil", "organic hair oil", "natural skincare", "cold-pressed oils", "Pakistan herbal products"],
+  title: "Afia's Herbal & Organic Care Products | Skin, Hair & Body Oils Pakistan",
+  description:
+    "Shop premium herbal oils, natural skin care, hair care, body care, and organic remedies in Pakistan. 100% pure, chemical-free, cold-pressed oils and care products.",
+  keywords: [
+    "herbal oil", "organic hair oil", "natural skin care", "body care products",
+    "cold-pressed oils", "anti hair fall", "acne treatment", "glowing skin",
+    "herbal remedies", "chemical-free products", "Pakistan skincare"
+  ],
   openGraph: {
-    title: "Afia's Herbal Oil | Pure, Natural & Organic Care Products",
-    description: "Premium quality herbal oils for hair and skin care. 100% natural, organic, and sustainably sourced.",
+    title: "Afia's Herbal & Organic Care Products | Skin, Hair & Body Oils Pakistan",
+    description: "Premium herbal and organic products for skin, hair, and body care. 100% natural, cold-pressed, chemical-free, and sustainably sourced.",
     type: "website",
     locale: "en_PK",
   },
