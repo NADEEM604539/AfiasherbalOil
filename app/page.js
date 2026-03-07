@@ -23,17 +23,17 @@ export const metadata = {
 
 async function fetchData() {
   try {
-    // Query products directly from database
+    // Query all products (not deals) regardless of stock status
     const [products] = await db.query(
-      "SELECT id, name, description, image_url, price, instock FROM products WHERE instock = 1 ORDER BY id DESC"
+      "SELECT id, name, description, image_url, price, instock FROM products WHERE deal = 0 ORDER BY id DESC"
     );
 
-    // Query deals directly from database (assuming there's a deals column or separate table)
+    // Query all deals regardless of stock status
     const [deals] = await db.query(
-      "SELECT id, name, description, image_url, price, instock FROM products WHERE instock = 1 LIMIT 3"
+      "SELECT id, name, description, image_url, price, instock FROM products WHERE deal = 1 ORDER BY id DESC"
     );
 
-    // Query special reviews directly from database
+    // Query last 6 approved special reviews
     const [reviews] = await db.query(`SELECT 
     sr.id,
     u.name AS user_name,

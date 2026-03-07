@@ -2,8 +2,9 @@ import db from "@/lib/db";
 
 export async function GET() {
   try {
+    // Get all deals regardless of stock status
     const [rows] = await db.query(
-      "SELECT id, name, description, price, image_url, category, instock FROM products where deal=? ORDER BY created_at DESC",[true]
+      "SELECT id, name, description, price, image_url, category, instock FROM products WHERE deal = 1 ORDER BY created_at DESC"
     );
     return Response.json(rows);
   } catch (e) {
