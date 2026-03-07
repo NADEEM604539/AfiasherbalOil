@@ -1,5 +1,6 @@
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 
 export async function GET() {
   try {
@@ -117,6 +118,19 @@ export async function POST(request) {
     await conn.commit();
     await conn.release();
 
+    // Send order confirmation email (non-blocking)
+    try {
+      await sendOrderConfirmationEmail({
+        userEmail: email,
+        userName: name,
+        orderId: orderId,
+        totalPrice: grandTotal,
+        items: cartItems,
+      });
+    } catch (emailError) {
+      console.error("Failed to send confirmation email:", emailError);
+      // Don't fail the order if email fails - just log it
+    }
 
     return Response.json({ ok: true, order_id: orderId });
   } catch (e) {
