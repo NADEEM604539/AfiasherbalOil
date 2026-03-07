@@ -34,16 +34,18 @@ async function fetchData() {
     );
 
     // Query last 6 approved special reviews
-    const [reviews] = await db.query(`SELECT 
-    sr.id,
-    u.name AS user_name,
-    sr.comment,
-    sr.rating
-  FROM special_reviews sr
-  JOIN users u ON sr.user_id = u.id
-  WHERE sr.approved = TRUE
-  ORDER BY sr.created_at DESC
-  LIMIT 6
+    const [reviews] = await db.query(`
+           SELECT 
+        special_reviews.id,
+        special_reviews.comment,
+        special_reviews.rating,
+        special_reviews.created_at,
+        users.name AS user_name
+      FROM special_reviews
+      JOIN users ON special_reviews.user_id = users.id
+      where special_reviews.approved = true
+      ORDER BY special_reviews.created_at DESC
+      LIMIT 6
 `);
 
     return {
