@@ -1,5 +1,5 @@
 import db from '@/lib/db';
-import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
@@ -15,19 +15,27 @@ export async function POST(request) {
 
     if (rows.length > 0) {
       console.log('Email already exists');
-      return Response('Email already exists');
+      return NextResponse.json(
+        { error: 'Email already exists' },
+        { status: 400 }
+      );
     } else {
       await db.query(
         'INSERT INTO users (name, email, role_id) VALUES (?, ?, ?)',
-        [name, email,2]
+        [name, email, 2]
       );
       console.log('User created successfully');
+      return NextResponse.json(
+        { message: 'User created successfully' },
+        { status: 201 }
+      );
     }
 
-    return Response('Email already exists');
-
-    
   } catch (error) {
     console.error('Error in POST:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }
