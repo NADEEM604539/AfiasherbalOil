@@ -15,6 +15,7 @@ export async function POST(request) {
 
     if (rows.length > 0) {
       console.log('Email already exists');
+      return Response('Email already exists');
     } else {
       await db.query(
         'INSERT INTO users (name, email, role_id) VALUES (?, ?, ?)',
@@ -22,6 +23,10 @@ export async function POST(request) {
       );
       console.log('User created successfully');
     }
+
+    return Response('Email already exists');
+
+    
   } catch (error) {
     console.error('Error in POST:', error);
   }
