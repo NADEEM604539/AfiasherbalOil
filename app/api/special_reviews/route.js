@@ -50,3 +50,5 @@ export async function GET() {
     return new Response(JSON.stringify({ error: "Failed to fetch reviews", details: err.message }), { status: 500 });
   }
 }
+
+
