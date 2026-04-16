@@ -4,6 +4,9 @@ import Image from "next/image";
 import HomePageClient from "./HomePageClient";
 import db from "@/lib/db";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: "Afia's Herbal & Organic Care Products | Skin, Hair & Body Oils Pakistan",
   description:
