@@ -1,6 +1,6 @@
-drop database herbal_oil;
-CREATE DATABASE herbal_oil;
-USE herbal_oil;
+drop database nmba;
+CREATE DATABASE nmba;
+USE nmba;
 
 CREATE TABLE admin_emails (
   email VARCHAR(255) UNIQUE NOT NULL
@@ -23,21 +23,32 @@ CREATE TABLE users (
   FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
--- 3. Products (Herbal Oils)
+-- 3. Categories
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  description TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Products (NMBA LUXE WEAR)
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
   description TEXT,
   price DECIMAL(10,2) NOT NULL,
-  image_url TEXT,
-  category VARCHAR(50),
-  instock BOOLEAN DEFAULT TRUE,
+  image_url_1 TEXT,
+  image_url_2 TEXT,
+  quantity INT NOT NULL DEFAULT 0,
+  category_id INT,
   deal BOOLEAN DEFAULT FALSE,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  is_deleted BOOLEAN DEFAULT FALSE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
 
--- 4. Cart Items
+-- 6. Cart Items
 CREATE TABLE cart_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
@@ -47,7 +58,7 @@ CREATE TABLE cart_items (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
--- 5. Orders
+-- 7. Orders
 CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
@@ -57,7 +68,7 @@ CREATE TABLE orders (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- 6. Order Items
+-- 8. Order Items
 CREATE TABLE order_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
@@ -68,7 +79,7 @@ CREATE TABLE order_items (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
--- 7. Payments
+-- 9. Payments
 CREATE TABLE payments (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
@@ -80,7 +91,7 @@ CREATE TABLE payments (
   FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
 
--- 8. Product Reviews
+-- 10. Product Reviews
 CREATE TABLE reviews (
   id INT AUTO_INCREMENT PRIMARY KEY,
   product_id INT NOT NULL,
@@ -92,7 +103,8 @@ CREATE TABLE reviews (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 	
-  CREATE TABLE special_reviews (
+-- 11. Special Reviews
+CREATE TABLE special_reviews (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   order_id INT NOT NULL,
@@ -104,7 +116,7 @@ CREATE TABLE reviews (
   INDEX (user_id)
 ); 
 
--- 9. Chat (Customer  Admin)
+-- 12. Chat (Customer - Admin)
 CREATE TABLE chats (
   id INT AUTO_INCREMENT PRIMARY KEY,
   sender_id INT NOT NULL,
@@ -126,25 +138,22 @@ INSERT INTO roles (id, role_name) VALUES
 INSERT INTO users (id, name, email, role_id) VALUES
   (1,'Admin User','ndm604539@gmail.com',1),
   (2,'Customer One','ullahasmut310@gmail.com',2),
-  (3,'Customer Two','cust2@herbaloils.com',2);
 
-INSERT INTO products (id, name, description, price, image_url, category) VALUES
-  (1,'Pure Coconut Oil','Cold-pressed pure coconut oil for hair & skin',500.00,'https://example.com/coconut.jpg','Hair Care'),
-  (2,'Almond Oil','Sweet almond oil, great for massage & skin care',800.00,'https://example.com/almond.jpg','Skin Care'),
-  (3,'Black Seed Oil','Premium quality kalonji oil with health benefits',1200.00,'https://example.com/blackseed.jpg','Health');
+
+INSERT INTO categories (id, name, description) VALUES
+  (1,'Hair Care','Helps your hair grow and shine'),
+
+
+INSERT INTO products (id, name, description, price, image_url_1, image_url_2, quantity, category_id, deal) VALUES
+  (1,'Premium Cotton Shirt','100% organic cotton, breathable fabric',1500.00,'https://res.cloudinary.com/dherwwgcl/image/upload/v1776595798/products/ps3mjcqzyyplaqyuazet.jpg','https://res.cloudinary.com/dherwwgcl/image/upload/v1776595798/products/ps3mjcqzyyplaqyuazet.jpg',78,1,FALSE);
 
 INSERT INTO reviews (product_id, user_id, rating, comment) VALUES
-  (1,2,5,'Amazing oil, my hair feels so soft!'),
-  (2,3,4,'Good quality but a bit expensive.');
+  (1,2,5,'Excellent quality Product, perfect!'),
+
 
 INSERT INTO chats (sender_id, receiver_id, message) VALUES
-  (2,1,'Hello admin, is coconut oil available in 1L bottle?'),
-  (1,2,'Yes, we have 1L packaging available.'),
-  (3,1,'Can you recommend oil for dry skin?');
-  
-  
-  
-  
+  (2,1,'Hello admin, is the premium shirt available in size L?'),
 
-
-
+  
+  
+  
