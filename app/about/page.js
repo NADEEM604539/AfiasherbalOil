@@ -1,7 +1,8 @@
-import Footer from "@/components/Footer";
+import { Suspense } from "react";
 import NavbarWrapper from "./NavbarWrapper";
 import AboutPageClient from "./AboutPageClient";
-import { Suspense } from "react";
+
+export const dynamic = 'force-static';
 
 export const metadata = {
   title: "About Afia's Herbal Oil | Our Story, Mission & Values",
@@ -17,7 +18,9 @@ export const metadata = {
 export default function About() {
   return (
     <>
-      <NavbarWrapper />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NavbarWrapper />
+      </Suspense>
       <Suspense fallback={<div>Loading...</div>}>
         <AboutPageClient />
       </Suspense>

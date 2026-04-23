@@ -1,318 +1,133 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { CheckCircle, Leaf, ShieldCheck, Heart } from "lucide-react";
 
 export default function AboutPageClient() {
-  const [expandedSection, setExpandedSection] = useState("about");
-
-  const toggleSection = (section) => {
-    setExpandedSection(expandedSection === section ? null : section);
-  };
-
   return (
-    <>
-      <main className="min-h-screen bg-gradient-to-b from-[#FFF2E1] to-[#F5E6D3]">
+    <div className="bg-gray-50 min-h-screen pb-16">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 py-12 md:py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-black text-[#102C26] mb-4">
-            About Afia<span className="text-[#248D76]">'s</span> Herbal Oils
+      <div className="relative bg-teal-900 text-white py-24 px-6 md:px-12 lg:px-24 mb-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="https://images.unsplash.com/photo-1608248543803-b0e6c5ee0037?q=80&w=2000&auto=format&fit=crop"
+            alt="Herbal background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
+            Our Rooted Journey
           </h1>
-          <p className="text-lg text-[#6B4F2F] max-w-3xl mx-auto">
-            Discover our story, mission, and commitment to bringing you the finest natural and organic oils for your wellness and self-care journey.
+          <p className="text-lg md:text-xl text-teal-100 max-w-2xl mx-auto">
+            From a humble home kitchen to a trusted name in natural wellness, discover the heart and soul behind Afia's Herbal Oil.
           </p>
         </div>
+      </div>
 
-        {/* Main Sections */}
-        <div className="space-y-6">
-          {/* About Us Section */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-[#248D76]">
-            <button
-              onClick={() => toggleSection("about")}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-[#F5E6D3] transition"
-            >
-              <h2 className="text-2xl font-black text-[#102C26]">About Us</h2>
-              {expandedSection === "about" ? (
-                <ChevronUp className="w-6 h-6 text-[#248D76]" />
-              ) : (
-                <ChevronDown className="w-6 h-6 text-[#248D76]" />
-              )}
-            </button>
-            {expandedSection === "about" && (
-              <div className="px-6 py-6 border-t border-gray-200 space-y-4 text-[#6B4F2F]">
-                <p className="leading-relaxed">
-                  At Afia's Herbal Oils, we believe in the power of nature. Our mission is to provide you with pure, natural, and organic oils that nourish your body, mind, and spirit. Every product we offer is carefully crafted using sustainable sourcing practices and time-honored traditions.
-                </p>
-                <p className="leading-relaxed">
-                  We are committed to quality, purity, and sustainability. Our oils are free from harmful chemicals, synthetic additives, and artificial preservatives. We partner with trusted suppliers who share our values and commitment to ethical practices.
-                </p>
-                <div className="bg-[#FFF2E1] p-4 rounded-lg mt-4">
-                  <h3 className="font-bold text-[#102C26] mb-3">Our Core Values:</h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#248D76] font-bold mt-1">✓</span>
-                      <span><strong>Quality:</strong> We never compromise on the quality of our products</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#248D76] font-bold mt-1">✓</span>
-                      <span><strong>Purity:</strong> 100% natural and organic ingredients only</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#248D76] font-bold mt-1">✓</span>
-                      <span><strong>Sustainability:</strong> Eco-friendly practices at every step</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#248D76] font-bold mt-1">✓</span>
-                      <span><strong>Customer Care:</strong> Your satisfaction is our priority</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+        
+        {/* The Story Section */}
+        <section className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1547489432-8dfc384e5c54?q=80&w=1200&auto=format&fit=crop"
+              alt="Making natural oils"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-teal-900">
+              How It All Began
+            </h2>
+            <p className="text-gray-700 leading-relaxed text-lg">
+              Afia's Herbal Oil was born out of a simple need: a mother's desire to find a truly natural, chemical-free solution for her family's hair and skin care. Frustrated by the countless products filled with artificial additives, our founder, Afia, started producing her own blends using ancient recipes passed down through generations.
+            </p>
+            <p className="text-gray-700 leading-relaxed text-lg">
+              What started as a small remedy for friends and family quickly blossomed. Word spread about the remarkable results of her pure, cold-pressed oils. Today, we remain committed to that original vision: providing honest, organic, and effective care products without compromise.
+            </p>
+          </div>
+        </section>
+
+        {/* Our Mission & Values */}
+        <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-teal-900 mb-6">
+              Our Mission
+            </h2>
+            <p className="text-xl text-gray-600 italic">
+              "To empower individuals to embrace their natural beauty through pure, ethically sourced, and handcrafted herbal solutions."
+            </p>
           </div>
 
-          {/* Privacy Policy Section */}
-          <div id="privacy" className="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-[#248D76]">
-            <button
-              onClick={() => toggleSection("privacy")}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-[#F5E6D3] transition"
-            >
-              <h2 className="text-2xl font-black text-[#102C26]">Privacy Policy</h2>
-              {expandedSection === "privacy" ? (
-                <ChevronUp className="w-6 h-6 text-[#248D76]" />
-              ) : (
-                <ChevronDown className="w-6 h-6 text-[#248D76]" />
-              )}
-            </button>
-            {expandedSection === "privacy" && (
-              <div className="px-6 py-6 border-t border-gray-200 space-y-4 text-[#6B4F2F] text-sm">
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">1. Information We Collect</h3>
-                  <p className="leading-relaxed">
-                    We collect information you provide directly to us, such as when you create an account, place an order, or contact us for support. This may include your name, email address, phone number, shipping address, and payment information.
-                  </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <Leaf className="w-8 h-8 text-green-600" />,
+                title: "100% Organic",
+                description: "We source only the finest, naturally grown ingredients. No synthetics, ever."
+              },
+              {
+                icon: <ShieldCheck className="w-8 h-8 text-teal-600" />,
+                title: "Cold-Pressed Purity",
+                description: "Our extraction process ensures all essential nutrients remain intact."
+              },
+              {
+                icon: <Heart className="w-8 h-8 text-rose-500" />,
+                title: "Cruelty Free",
+                description: "We love animals. Our products are never tested on them."
+              },
+              {
+                icon: <CheckCircle className="w-8 h-8 text-blue-600" />,
+                title: "Sustainably Sourced",
+                description: "We work directly with local farmers to ensure fair trade and eco-friendly practices."
+              }
+            ].map((value, index) => (
+              <div key={index} className="text-center space-y-4 p-6 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors duration-300">
+                <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                  {value.icon}
                 </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">2. How We Use Your Information</h3>
-                  <p className="leading-relaxed mb-2">We use your information to:</p>
-                  <ul className="space-y-1 ml-4">
-                    <li>• Process and deliver your orders</li>
-                    <li>• Provide customer support and respond to inquiries</li>
-                    <li>• Send you updates about your order status</li>
-                    <li>• Improve our website and services</li>
-                    <li>• Send marketing communications (with your consent)</li>
-                    <li>• Comply with legal obligations</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">3. Data Security</h3>
-                  <p className="leading-relaxed">
-                    We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">4. Third-Party Sharing</h3>
-                  <p className="leading-relaxed">
-                    We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website and conducting our business, under strict confidentiality agreements.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">5. Cookies</h3>
-                  <p className="leading-relaxed">
-                    Our website uses cookies to enhance your browsing experience. Cookies are small files that are stored on your device and help us remember your preferences and track website usage.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">6. Your Rights</h3>
-                  <p className="leading-relaxed">
-                    You have the right to access, update, or delete your personal information at any time. To exercise these rights, please contact us at abidamansoora016@gmail.com.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">7. Contact Us</h3>
-                  <p className="leading-relaxed">
-                    If you have any questions about our Privacy Policy, please contact us at:
-                    <br />
-                    <strong>Email:</strong> abidamansoora016@gmail.com
-                    <br />
-                    <strong>Phone:</strong> +92 333 6419935
-                    <strong>Phone:</strong> +92 333 6419935
-                  </p>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
               </div>
-            )}
+            ))}
           </div>
+        </section>
 
-          {/* Terms & Conditions Section */}
-          <div id="terms" className="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-[#248D76]">
-            <button
-              onClick={() => toggleSection("terms")}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-[#F5E6D3] transition"
-            >
-              <h2 className="text-2xl font-black text-[#102C26]">Terms & Conditions</h2>
-              {expandedSection === "terms" ? (
-                <ChevronUp className="w-6 h-6 text-[#248D76]" />
-              ) : (
-                <ChevronDown className="w-6 h-6 text-[#248D76]" />
-              )}
-            </button>
-            {expandedSection === "terms" && (
-              <div className="px-6 py-6 border-t border-gray-200 space-y-4 text-[#6B4F2F] text-sm">
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">1. Use License</h3>
-                  <p className="leading-relaxed">
-                    Permission is granted to temporarily download one copy of the materials (including information and software) from Afia's Herbal Oils website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
-                  </p>
-                  <ul className="space-y-1 ml-4 mt-2">
-                    <li>• Modifying or copying the materials</li>
-                    <li>• Using the materials for any commercial purpose or for any public display</li>
-                    <li>• Attempting to decompile or reverse engineer any software contained on the website</li>
-                    <li>• Removing any copyright or other proprietary notations from the materials</li>
-                    <li>• Transferring the materials to another person or "mirroring" the materials on any other server</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">2. Disclaimer</h3>
-                  <p className="leading-relaxed">
-                    The materials on Afia's Herbal Oils website are provided on an 'as is' basis. Afia's Herbal Oils makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">3. Limitations</h3>
-                  <p className="leading-relaxed">
-                    In no event shall Afia's Herbal Oils or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Afia's Herbal Oils website.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">4. Accuracy of Materials</h3>
-                  <p className="leading-relaxed">
-                    The materials appearing on Afia's Herbal Oils website could include technical, typographical, or photographic errors. Afia's Herbal Oils does not warrant that any of the materials on its website are accurate, complete, or current.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">5. Links</h3>
-                  <p className="leading-relaxed">
-                    Afia's Herbal Oils has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Afia's Herbal Oils of the site. Use of any such linked website is at the user's own risk.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">6. Modifications</h3>
-                  <p className="leading-relaxed">
-                    Afia's Herbal Oils may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">7. Governing Law</h3>
-                  <p className="leading-relaxed">
-                    These terms and conditions are governed by and construed in accordance with the laws of Pakistan, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">8. Product Information</h3>
-                  <p className="leading-relaxed">
-                    All product descriptions, pricing, and availability information are subject to change without notice. We strive to maintain accurate and up-to-date information, but errors may occur. We reserve the right to correct any errors, inaccuracies, or omissions.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">9. Returns & Refunds</h3>
-                  <p className="leading-relaxed">
-                    All products come with a satisfaction guarantee. If you are not completely satisfied with your purchase, please contact us within 14 days of receipt for a refund or replacement.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-[#102C26] mb-2">10. Contact Us</h3>
-                  <p className="leading-relaxed">
-                    If you have any questions about these Terms and Conditions, please contact us at:
-                    <br />
-                    <strong>Email:</strong> abidamansoora016@gmail.com
-                    <br />
-                    <strong>Phone:</strong> +92 333 6419935
-                  </p>
-                </div>
-              </div>
-            )}
+        {/* Call to Action */}
+        <section className="text-center bg-teal-800 text-white rounded-3xl p-12 md:p-20 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <Image
+              src="https://images.unsplash.com/photo-1556228578-8d89b6acd8d4?q=80&w=2000&auto=format&fit=crop"
+              alt="Leaf pattern"
+              fill
+              className="object-cover"
+            />
           </div>
-
-          {/* Additional Info Section */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-[#248D76]">
-            <button
-              onClick={() => toggleSection("help")}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-[#F5E6D3] transition"
-            >
-              <h2 className="text-2xl font-black text-[#102C26]">Need Help?</h2>
-              {expandedSection === "help" ? (
-                <ChevronUp className="w-6 h-6 text-[#248D76]" />
-              ) : (
-                <ChevronDown className="w-6 h-6 text-[#248D76]" />
-              )}
-            </button>
-            {expandedSection === "help" && (
-              <div className="px-6 py-6 border-t border-gray-200 space-y-4">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-[#102C26]">Contact Information</h3>
-                    <p className="text-[#6B4F2F]">
-                      <strong>Email:</strong><br />
-                      <a href="mailto:abidamansoora016@gmail.com" className="text-[#248D76] hover:underline">
-                        abidamansoora016@gmail.com
-                      </a>
-                    </p>
-                    <p className="text-[#6B4F2F]">
-                      <strong>Phone:</strong><br />
-                      <a href="tel:+923336419935" className="text-[#248D76] hover:underline">
-                        +92 333 6419935
-                      </a>
-                      <a href="tel:+923336419935" className="text-[#248D76] hover:underline">
-                       +92 3434647035
-                      </a>
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-[#102C26]">Quick Links</h3>
-                    <ul className="space-y-1 text-sm">
-                      <li>
-                        <Link href="/chat" className="text-[#248D76] hover:underline">
-                          Chat with us
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/#products" className="text-[#248D76] hover:underline">
-                          Browse Products
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/orders" className="text-[#248D76] hover:underline">
-                          Track Orders
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
+          <div className="relative z-10 max-w-2xl mx-auto space-y-8">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold">
+              Experience the Purity
+            </h2>
+            <p className="text-lg md:text-xl text-teal-100">
+              Ready to transform your self-care routine? Explore our collection of lovingly crafted oils.
+            </p>
+            <div className="pt-4">
+              <Link 
+                href="/#products" 
+                className="inline-block bg-white text-teal-900 font-bold px-8 py-4 rounded-full hover:bg-teal-50 transition-transform transform hover:scale-105 shadow-lg"
+              >
+                Shop Our Collection
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-      <Footer />
-    </main>
-    </>
+        </section>
+
+      </div>
+    </div>
   );
 }
