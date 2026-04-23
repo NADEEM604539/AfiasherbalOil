@@ -6,11 +6,11 @@ export async function POST(request) {
     // Get current user
     const userId = await getCurrentUserId();
 
-    // Get form data
-    const form = await request.formData();
-    const rating = Number(form.get("rating"));
-    const comment = form.get("comment") || null;
-    const order_id= form.get("order_id") ;
+    // Get JSON data
+    const body = await request.json();
+    const rating = Number(body.rating);
+    const comment = body.comment || null;
+    const order_id = body.order_id;
 
     if (!rating || rating < 1 || rating > 5) {
       return new Response(JSON.stringify({ error: "Invalid rating" }), { status: 400 });

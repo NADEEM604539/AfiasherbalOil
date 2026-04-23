@@ -17,10 +17,10 @@ export default function Footer() {
             Pure, natural and organic oils for hair, skin, and wellness. Sustainably sourced, carefully crafted, and made with love for your self-care rituals.
           </p>
           <div className="mt-2 md:mt-3 flex gap-4">
-            <Link href="https://www.facebook.com/share/1KJrchaFDp/" target="_blank" className="bg-white border-2 border-[#248D76] text-[#248D76] p-3 rounded-full hover:bg-[#248D76] hover:text-white transition-all duration-300 hover:scale-110">
+            <Link href="https://www.facebook.com/share/1KJrchaFDp/" target="_blank" className="bg-white border-2 border-[#1a4d42] text-[#1a4d42] p-3 rounded-full hover:bg-[#1a4d42] hover:text-white transition-all duration-300 hover:scale-110">
               <Facebook className="w-5 h-5" />
             </Link>
-            <Link href="https://www.instagram.com/made.byafia?igsh=MWhrdnpzazdzMGV1dQ==" target="_blank" className="bg-white border-2 border-[#248D76] text-[#248D76] p-3 rounded-full hover:bg-[#248D76] hover:text-white transition-all duration-300 hover:scale-110">
+            <Link href="https://www.instagram.com/made.byafia?igsh=MWhrdnpzazdzMGV1dQ==" target="_blank" className="bg-white border-2 border-[#1a4d42] text-[#1a4d42] p-3 rounded-full hover:bg-[#1a4d42] hover:text-white transition-all duration-300 hover:scale-110">
               <Instagram className="w-5 h-5" />
             </Link>
           </div>
@@ -30,11 +30,11 @@ export default function Footer() {
         <div>
           <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Quick Links</h4>
           <ul className="space-y-1 md:space-y-2 text-sm">
-            <li><Link href="/" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Home</Link></li>
-            <li><Link href="/#products" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Shop Products</Link></li>
-            <li><Link href="/#deals" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Special Deals</Link></li>
-            <li><Link href="/orders" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ My Orders</Link></li>
-            <li><Link href="/chat" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Chat Support</Link></li>
+            <li><Link href="/" className="text-[#6B4F2F] hover:text-[#1a4d42] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Home</Link></li>
+            <li><Link href="/#products" className="text-[#6B4F2F] hover:text-[#1a4d42] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Shop Products</Link></li>
+            <li><Link href="/#deals" className="text-[#6B4F2F] hover:text-[#1a4d42] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Special Deals</Link></li>
+            <li><Link href="/orders" className="text-[#6B4F2F] hover:text-[#1a4d42] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ My Orders</Link></li>
+            <li><Link href="/chat" className="text-[#6B4F2F] hover:text-[#1a4d42] font-semibold transition duration-300 hover:translate-x-1 inline-block\">→ Chat Support</Link></li>
           </ul>
         </div>
 
@@ -43,21 +43,22 @@ export default function Footer() {
           <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Contact Us</h4>
           <div className="space-y-2 md:space-y-3 text-sm">
             <div className="flex items-start gap-2">
-              <Phone className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
+              <Phone className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-[#102C26] font-bold">Phone</p>
-                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#248D76] transition font-semibold">+92 333 6419935</a>
+                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold">+92 3336419935</a>
+                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold">+92 3434647035</a>
               </div>
             </div>
             <div className="flex items-start gap-2">
-              <Mail className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
+              <Mail className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-[#102C26] font-bold">Email</p>
-                <a href="mailto:abidamansoora016@gmail.com" className="text-[#6B4F2F] hover:text-[#248D76] transition font-semibold text-xs break-all">abidamansoora016@gmail.com</a>
+                <a href="mailto:abidamansoora016@gmail.com" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold text-xs break-all">abidamansoora016@gmail.com</a>
               </div>
             </div>
             <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-[#248D76] flex-shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-[#102C26] font-bold">Location</p>
                 <p className="text-[#6B4F2F] font-semibold">Pakistan</p>

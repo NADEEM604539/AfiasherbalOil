@@ -143,6 +143,7 @@ export default function AboutPageClient() {
                     <strong>Email:</strong> abidamansoora016@gmail.com
                     <br />
                     <strong>Phone:</strong> +92 333 6419935
+                    <strong>Phone:</strong> +92 333 6419935
                   </p>
                 </div>
               </div>
@@ -276,6 +277,9 @@ export default function AboutPageClient() {
                       <strong>Phone:</strong><br />
                       <a href="tel:+923336419935" className="text-[#248D76] hover:underline">
                         +92 333 6419935
+                      </a>
+                      <a href="tel:+923336419935" className="text-[#248D76] hover:underline">
+                       +92 3434647035
                       </a>
                     </p>
                   </div>

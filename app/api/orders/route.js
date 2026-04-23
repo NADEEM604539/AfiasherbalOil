@@ -80,15 +80,27 @@ export async function POST(request) {
     } catch {}
 
     const [cartItems] = await conn.query(
-      `SELECT ci.id, ci.product_id, ci.quantity, p.name AS product_name, p.price
+      `SELECT ci.id, ci.product_id, ci.quantity, p.name AS product_name, p.price, p.quantity as available_quantity
        FROM cart_items ci JOIN products p ON p.id = ci.product_id
        WHERE ci.user_id = ?`,
       [userId]
     );
 
     if (cartItems.length === 0) {
+      await conn.rollback();
       await conn.release();
       return new Response(JSON.stringify({ error: "Cart is empty" }), { status: 400 });
+    }
+
+    // Validate all items have sufficient stock
+    for (const item of cartItems) {
+      if (item.quantity > item.available_quantity) {
+        await conn.rollback();
+        await conn.release();
+        return new Response(JSON.stringify({ 
+          error: `Insufficient stock for "${item.product_name}". Available: ${item.available_quantity}, Requested: ${item.quantity}` 
+        }), { status: 400 });
+      }
     }
 
     const total = cartItems.reduce((s, it) => s + Number(it.price) * it.quantity, 0);
@@ -101,10 +113,17 @@ export async function POST(request) {
     );
     const orderId = orderRes.insertId;
 
+    // Create order items and update product quantities
     for (const it of cartItems) {
       await conn.query(
         "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)",
         [orderId, it.product_id, it.quantity, it.price]
+      );
+      
+      // Reduce product quantity
+      await conn.query(
+        "UPDATE products SET quantity = quantity - ? WHERE id = ?",
+        [it.quantity, it.product_id]
       );
     }
 

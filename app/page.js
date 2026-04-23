@@ -26,19 +26,19 @@ export const metadata = {
 
 async function fetchData() {
   try {
-    // Query all products (not deals) regardless of stock status
+    // Fetch latest 6 products (optimized query with LIMIT)
     const [products] = await db.query(
-      "SELECT id, name, description, image_url, price, instock FROM products WHERE deal = 0 ORDER BY id DESC"
+      "SELECT id, name, description, price, image_url_1, image_url_2, quantity, category_id, deal, created_at FROM products WHERE deal = 0 AND is_deleted = 0 ORDER BY created_at DESC LIMIT 8"
     );
 
-    // Query all deals regardless of stock status
+    // Fetch latest 3 deals (optimized query with LIMIT)
     const [deals] = await db.query(
-      "SELECT id, name, description, image_url, price, instock FROM products WHERE deal = 1 ORDER BY id DESC"
+      "SELECT id, name, description, price, image_url_1, image_url_2, quantity, category_id, deal, created_at FROM products WHERE deal = 1 AND is_deleted = 0 ORDER BY created_at DESC LIMIT 3"
     );
 
     // Query last 6 approved special reviews
     const [reviews] = await db.query(`
-           SELECT 
+      SELECT 
         special_reviews.id,
         special_reviews.comment,
         special_reviews.rating,
@@ -46,10 +46,10 @@ async function fetchData() {
         users.name AS user_name
       FROM special_reviews
       JOIN users ON special_reviews.user_id = users.id
-      where special_reviews.approved = true
+      WHERE special_reviews.approved = true
       ORDER BY special_reviews.created_at DESC
       LIMIT 6
-`);
+    `);
 
     return {
       products: Array.isArray(products) ? products : [],
