@@ -324,7 +324,7 @@ function ProductCard({ product, isDeal }) {
         </h3>
 
         <div className="mb-4">
-          {product.instock ? (
+          {product.quantity > 0 ? (
             <div className="inline-flex items-center gap-2 bg-[#D1FAE5] px-3 py-1.5 rounded-full border-2 border-[#102C26]">
               <span className="inline-block w-2 h-2 bg-[#102C26] rounded-full animate-pulse" />
               <span className="text-[#102C26] text-xs font-bold">IN STOCK</span>
