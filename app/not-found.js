@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 export default function NotFound() {
   return (
     <div>
-      <Navbar />
       <div className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-b from-[#FFF2E1] via-[#FBF0E0] to-[#F5E6D3] text-[#3D2817] flex flex-col items-center justify-center relative overflow-hidden">
         {/* Glowing background orbs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#248D76]/10 rounded-full blur-3xl"></div>
