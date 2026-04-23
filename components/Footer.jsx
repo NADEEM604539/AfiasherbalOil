@@ -40,40 +40,52 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div>
-          <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Contact Us</h4>
-          <div className="space-y-2 md:space-y-3 text-sm">
-            <div className="flex items-start gap-2">
-              <Phone className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-[#102C26] font-bold">Phone</p>
-                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold">+92 3336419935</a>
-                <a href="tel:+923336419935" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold">+92 3434647035</a>
+          <h4 className="font-black text-[#102C26] mb-3 md:mb-5 text-lg uppercase tracking-wider relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-1/2 after:h-0.5 after:bg-[#1a4d42]">Contact Space</h4>
+          <div className="space-y-4 text-sm">
+            
+            <div className="flex items-start gap-3 bg-white/40 p-3 rounded-xl border border-[#248D76]/20">
+              <div className="bg-[#1a4d42] p-2 rounded-full text-white shadow-sm mt-0.5">
+                <Phone className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[#102C26] font-bold text-xs uppercase tracking-wider mb-1">Call Us Available 24/7</p>
+                <a href="tel:+923336419935" className="text-[#1a4d42] hover:text-[#248D76] transition-colors font-bold text-md">+92 333 641 9935</a>
+                <a href="tel:+923434647035" className="text-[#1a4d42] hover:text-[#248D76] transition-colors font-bold text-md">+92 343 464 7035</a>
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <Mail className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-[#102C26] font-bold">Email</p>
-                <a href="mailto:abidamansoora016@gmail.com" className="text-[#6B4F2F] hover:text-[#1a4d42] transition font-semibold text-xs break-all">abidamansoora016@gmail.com</a>
+
+            <div className="flex items-center gap-3 bg-white/40 p-3 rounded-xl border border-[#248D76]/20">
+              <div className="bg-[#1a4d42] p-2 rounded-full text-white shadow-sm">
+                <Mail className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[#102C26] font-bold text-xs uppercase tracking-wider">Email Us</p>
+                <a href="mailto:abidamansoora016@gmail.com" className="text-[#1a4d42] hover:text-[#248D76] transition-colors font-bold text-xs break-all mt-0.5">abidamansoora016@gmail.com</a>
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-[#1a4d42] flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-[#102C26] font-bold">Location</p>
-                <p className="text-[#6B4F2F] font-semibold">Pakistan</p>
+
+            <div className="flex items-center gap-3 bg-white/40 p-3 rounded-xl border border-[#248D76]/20">
+              <div className="bg-[#1a4d42] p-2 rounded-full text-white shadow-sm">
+                <MapPin className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <p className="text-[#102C26] font-bold text-xs uppercase tracking-wider">Location</p>
+                <p className="text-[#1a4d42] font-bold text-sm mt-0.5">Pakistan</p>
               </div>
             </div>
+
           </div>
         </div>
 
         {/* Legal Links */}
-        <div>
-          <h4 className="font-black text-[#102C26] mb-2 md:mb-4 text-lg uppercase tracking-wide">Legal</h4>
-          <ul className="space-y-2 md:space-y-3 text-sm">
-            <li><Link href="/about#privacy" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Privacy Policy</Link></li>
-            <li><Link href="/about#terms" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ Terms & Conditions</Link></li>
-            <li><Link href="/about" className="text-[#6B4F2F] hover:text-[#248D76] font-semibold transition duration-300 hover:translate-x-1 inline-block">→ About Us</Link></li>
+        <div className="md:pl-6 border-t md:border-t-0 md:border-l border-[#248D76]/20 pt-6 md:pt-0 mt-6 md:mt-0">
+          <h4 className="font-black text-[#102C26] mb-3 md:mb-5 text-lg uppercase tracking-wider relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-1/2 after:h-0.5 after:bg-[#1a4d42]">Legal</h4>
+          <ul className="space-y-4 text-sm font-bold bg-white/30 p-6 rounded-2xl border border-[#248D76]/10 shadow-sm">
+            <li><Link href="/about" className="text-[#6B4F2F] hover:text-[#102C26] transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group w-full"><span className="text-[#248D76] group-hover:pl-1 transition-all">â†’</span> Privacy Policy</Link></li>
+            <li className="h-px bg-gradient-to-r from-[#248D76]/20 to-transparent my-1"></li>
+            <li><Link href="/about" className="text-[#6B4F2F] hover:text-[#102C26] transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group w-full"><span className="text-[#248D76] group-hover:pl-1 transition-all">â†’</span> Terms & Conditions</Link></li>
+            <li className="h-px bg-gradient-to-r from-[#248D76]/20 to-transparent my-1"></li>
+            <li><Link href="/about" className="text-[#6B4F2F] hover:text-[#102C26] transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group w-full"><span className="text-[#248D76] group-hover:pl-1 transition-all">â†’</span> About Us</Link></li>
           </ul>
         </div>
 

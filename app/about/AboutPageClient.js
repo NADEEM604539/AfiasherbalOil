@@ -12,7 +12,7 @@ export default function AboutPageClient() {
       <div className="relative bg-teal-900 text-white py-24 px-6 md:px-12 lg:px-24 mb-16 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1608248543803-b0e6c5ee0037?q=80&w=2000&auto=format&fit=crop"
+            src="public\logo.jpg"
             alt="Herbal background"
             fill
             className="object-cover"
