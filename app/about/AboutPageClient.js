@@ -99,6 +99,55 @@ export default function AboutPageClient() {
           </div>
         </section>
 
+        {/* Legal, Privacy & Terms Sections */}
+        <section className="space-y-16">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
+            <h2 className="text-3xl font-serif font-bold text-teal-900 mb-6 border-b pb-4">
+              Privacy Policy
+            </h2>
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p>
+                At Afia's Herbal Oil, your privacy is our priority. We are committed to protecting your personal information and ensuring a secure shopping experience.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">Information We Collect</h3>
+              <p>
+                We collect information you provide directly to us when making a purchase or communicating with us, such as your name, email address, shipping address, and phone number. We do not store your payment processing details on our platform.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">How We Use Your Information</h3>
+              <p>
+                Your information is used strictly to process orders, provide customer support, and improve our services. We may occasionally send emails regarding promotional offers or product updates, which you can opt out of at any time.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">Data Protection</h3>
+              <p>
+                We never sell, rent, or trade your personal information to third parties. We employ industry-standard security measures to safeguard your personal data from unauthorized access or disclosure.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
+            <h2 className="text-3xl font-serif font-bold text-teal-900 mb-6 border-b pb-4">
+              Terms & Conditions
+            </h2>
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p>
+                By accessing and using our website, you accept and agree to be bound by the terms and provisions of this agreement.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">Product Information</h3>
+              <p>
+                As our products are 100% natural and handcrafted, there may be slight variations in color and aroma from batch to batch. These variations are normal and do not affect product efficacy. All product descriptions are provided for informational purposes and are not intended to diagnose, treat, cure, or prevent any disease.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">Orders & Shipping</h3>
+              <p>
+                We reserve the right to refuse or cancel any order. If an item is out of stock, we will notify you promptly. Shipping times are estimates and may vary based on your location within Pakistan. You are responsible for ensuring your shipping information is completely accurate.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6">Returns & Refunds</h3>
+              <p>
+                We stand behind our quality. If you receive a damaged or incorrect product, please contact us within 3 days of delivery so we can issue a replacement or refund. We generally do not accept returns for opened personal care products due to hygiene standards.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Call to Action */}
         <section className="text-center bg-teal-800 text-white rounded-3xl p-12 md:p-20 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">

@@ -15,9 +15,14 @@ export default function ProductPageClient({ initialProduct, initialReviews }) {
   const [product] = useState(initialProduct);
   const [reviews, setReviews] = useState(initialReviews);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [visibleReviews, setVisibleReviews] = useState(5);
 
   const handleReviewAdded = (newReview) => {
     setReviews([newReview, ...reviews]);
+  };
+
+  const handleShowMoreReviews = () => {
+    setVisibleReviews(prev => prev + 5);
   };
 
   const avgRating = reviews.length > 0 
@@ -175,17 +180,24 @@ export default function ProductPageClient({ initialProduct, initialReviews }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Reviews List */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Customer Reviews</h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">Customer Reviews</h2>
+              <span className="bg-gray-100 text-gray-700 py-1 px-3 rounded-full text-sm font-bold">
+                {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
+              </span>
+            </div>
             
             {reviews.length === 0 ? (
-              <div className="bg-gray-50 rounded-xl p-12 text-center">
-                <p className="text-gray-600 text-lg">No reviews yet. Be the first to share your experience!</p>
+              <div className="bg-gray-50 rounded-xl p-12 text-center border border-gray-200">
+                <div className="text-4xl mb-4">⭐</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">No reviews yet</h3>
+                <p className="text-gray-600 text-lg">Be the first to share your experience with this product!</p>
               </div>
             ) : (
-              <div className="space-y-6">
-                {reviews.map((review) => (
-                  <div key={review.id} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-                    <div className="flex items-start justify-between mb-3">
+              <div className="space-y-6 max-h-[800px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                {reviews.slice(0, visibleReviews).map((review) => (
+                  <div key={review.id} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:border-[#1a4d42]/30">
+                    <div className="flex items-start justify-between mb-4">
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <div className="flex gap-1">
@@ -193,14 +205,28 @@ export default function ProductPageClient({ initialProduct, initialReviews }) {
                               <StarIcon key={i} filled={i < review.rating} />
                             ))}
                           </div>
-                          <span className="font-bold text-gray-900">{"★".repeat(review.rating)}</span>
+                          <span className="font-bold text-gray-900 ml-2 bg-gray-100 px-2 py-0.5 rounded text-sm">{review.rating}.0</span>
                         </div>
-                        <p className="text-sm text-gray-500">{review.user_name || "Anonymous"}</p>
+                        <p className="text-sm font-semibold text-[#1a4d42] flex items-center gap-1">
+                          <span className="bg-[#1a4d42] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">{(review.user_name || "A")[0].toUpperCase()}</span>
+                          {review.user_name || "Anonymous User"}
+                        </p>
                       </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+                    <p className="text-gray-700 leading-relaxed text-base">{review.comment}</p>
                   </div>
                 ))}
+                
+                {visibleReviews < reviews.length && (
+                  <div className="text-center pt-4 pb-2">
+                    <button 
+                      onClick={handleShowMoreReviews}
+                      className="bg-white border-2 border-[#1a4d42] text-[#1a4d42] hover:bg-[#1a4d42] hover:text-white px-8 py-3 rounded-full font-bold transition-colors duration-300 shadow-sm"
+                    >
+                      Load More Reviews ({reviews.length - visibleReviews} remaining)
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -303,10 +329,10 @@ function AddToCartForm({ productId, maxQuantity }) {
           <select
             value={quantity}
             onChange={handleQuantityChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a4d42] focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a4d42] focus:border-transparent text-gray-900 bg-white"
           >
             {Array.from({ length: maxQuantity }, (_, i) => i + 1).map(num => (
-              <option key={num} value={num}>{num} {num === 1 ? 'item' : 'items'}</option>
+              <option key={num} value={num} className="text-gray-900">{num} {num === 1 ? 'item' : 'items'}</option>
             ))}
           </select>
         </div>
