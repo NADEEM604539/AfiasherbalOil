@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import NavbarWrapper from "./NavbarWrapper";
 import AboutPageClient from "./AboutPageClient";
 
 export const metadata = {
@@ -15,6 +16,7 @@ export const metadata = {
 export default function About() {
   return (
     <>
+      <NavbarWrapper />
       <AboutPageClient />
     </>
   );

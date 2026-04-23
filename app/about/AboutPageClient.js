@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -15,7 +14,6 @@ export default function AboutPageClient() {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen bg-gradient-to-b from-[#FFF2E1] to-[#F5E6D3]">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 py-12 md:py-16">
@@ -313,6 +311,7 @@ export default function AboutPageClient() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
     </>
   );
