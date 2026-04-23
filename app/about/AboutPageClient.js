@@ -35,7 +35,7 @@ export default function AboutPageClient() {
         <section className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl">
             <Image
-              src="https://images.unsplash.com/photo-1547489432-8dfc384e5c54?q=80&w=1200&auto=format&fit=crop"
+              src="logo.jpg"
               alt="Making natural oils"
               fill
               className="object-cover"
