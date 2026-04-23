@@ -1,6 +1,3 @@
-"use client";
-
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AboutPageClient from "./AboutPageClient";
 
@@ -18,7 +15,6 @@ export const metadata = {
 export default function About() {
   return (
     <>
-      <Navbar/>
       <AboutPageClient />
     </>
   );
