@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import NavbarWrapper from "./NavbarWrapper";
 import AboutPageClient from "./AboutPageClient";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "About Afia's Herbal Oil | Our Story, Mission & Values",
@@ -17,7 +18,9 @@ export default function About() {
   return (
     <>
       <NavbarWrapper />
-      <AboutPageClient />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AboutPageClient />
+      </Suspense>
     </>
   );
 }
