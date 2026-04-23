@@ -302,9 +302,9 @@ function ProductCard({ product, isDeal }) {
       
       <Link href={`/products/${product.id}`} className="block flex-1 flex flex-col p-6">
         <div className="aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#F5E6D3] to-[#E8DCC8] relative mb-5 border border-[#D9CDB5] flex items-center justify-center">
-          {product.image_url ? (
+          {product.image_url_1 ? (
             <Image
-              src={product.image_url}
+              src={product.image_url_1}
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
